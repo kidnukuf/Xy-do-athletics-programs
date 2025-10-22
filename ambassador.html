@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambassador Program - XYDO ATHLETIC PROGRAMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .ambassador-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 4rem 2rem;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .ambassador-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
+        }
+        
+        .ambassador-header h1 {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            color: var(--light-text);
+        }
+        
+        .ambassador-header p {
+            margin: 0 auto;
+            max-width: 800px;
+            color: var(--light-text);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .benefit-card {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-gold);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-gold);
+        }
+        
+        .benefit-title {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--light-text);
+        }
+        
+        .benefit-description {
+            margin: 0;
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        .steps-container {
+            margin-bottom: 3rem;
+        }
+        
+        .step-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 70px;
+            left: 40px;
+            width: 2px;
+            height: calc(100% - 40px);
+            background-color: rgba(255, 215, 0, 0.2);
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+            padding-top: 1rem;
+        }
+        
+        .step-title {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--light-text);
+        }
+        
+        .step-description {
+            margin: 0;
+            color: var(--light-text);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .ambassador-levels {
+            margin-bottom: 3rem;
+        }
+        
+        .level-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .level-tab {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            color: var(--light-text);
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .level-tab.active {
+            color: var(--primary-gold);
+        }
+        
+        .level-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold-gradient);
+        }
+        
+        .level-content {
+            display: none;
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .level-content.active {
+            display: block;
+        }
+        
+        .level-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .level-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--dark-bg);
+        }
+        
+        .level-info h3 {
+            margin: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            color: var(--light-text);
+        }
+        
+        .level-info p {
+            margin: 0;
+            color: var(--gray-text);
+        }
+        
+        .level-details {
+            margin-bottom: 2rem;
+        }
+        
+        .level-details h4 {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: var(--light-text);
+        }
+        
+        .level-details p {
+            margin: 0;
+            margin-bottom: 1rem;
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        .level-details ul {
+            margin: 0;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .level-details li {
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        .level-details li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .level-requirements {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .level-requirements h4 {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: var(--light-text);
+        }
+        
+        .level-requirements ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+        
+        .level-requirements li {
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        .level-requirements li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .level-cta {
+            text-align: center;
+        }
+        
+        .ambassador-tools {
+            margin-bottom: 3rem;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tool-card {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-gold);
+        }
+        
+        .tool-icon {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+        
+        .tool-title {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            color: var(--light-text);
+        }
+        
+        .tool-description {
+            margin: 0;
+            color: var(--light-text);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tool-link {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-link:hover {
+            color: var(--secondary-gold);
+        }
+        
+        .testimonials-container {
+            margin-bottom: 3rem;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            position: relative;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-gold);
+        }
+        
+        .testimonial-quote {
+            font-size: 3rem;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            color: rgba(255, 215, 0, 0.1);
+        }
+        
+        .testimonial-content {
+            margin: 0;
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            color: var(--light-text);
+            margin: 0;
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-role {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .cta-container {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
+        }
+        
+        .cta-title {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            color: var(--light-text);
+        }
+        
+        .cta-description {
+            margin: 0 auto;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .faq-container {
+            margin-bottom: 3rem;
+        }
+        
+        .faq-item {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--light-text);
+        }
+        
+        .faq-toggle {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--light-text);
+            line-height: 1.6;
+            display: none;
+        }
+        
+        .faq-item.active .faq-question {
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .application-form {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .form-title {
+            margin: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--light-text);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--light-text);
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-check:last-child {
+            margin-bottom: 0;
+        }
+        
+        .form-check-input {
+            margin-top: 0.3rem;
+        }
+        
+        .form-check-label {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        .form-text {
+            color: var(--gray-text);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .step-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .step-item:not(:last-child)::after {
+                display: none;
+            }
+            
+            .level-tabs {
+                flex-direction: column;
+                border-bottom: none;
+            }
+            
+            .level-tab {
+                border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            }
+            
+            .level-tab.active::after {
+                display: none;
+            }
+            
+            .level-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+                <h3>XYDO ATHLETIC</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="weekly_content.html">
+                        <i class="fas fa-basketball-ball"></i>
+                        <span>Training Program</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="video_library.html">
+                        <i class="fas fa-video"></i>
+                        <span>Video Library</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="team.html">
+                        <i class="fas fa-users"></i>
+                        <span>Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="blog.html">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="case_study.html">
+                        <i class="fas fa-flask"></i>
+                        <span>Case Study Program</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ambassador.html" class="active">
+                        <i class="fas fa-star"></i>
+                        <span>Ambassador Program</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="login.html" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-chevron-left" id="toggle-icon"></i>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Ambassador Program</h1>
+                    <p>Join our team of influential coaches and athletes to spread the word about XYDO ATHLETIC PROGRAMS.</p>
+                </div>
+            </div>
+            
+            <!-- Ambassador Header -->
+            <div class="ambassador-header">
+                <h1>Become a XYDO Ambassador</h1>
+                <p>
+                    Join our network of passionate basketball coaches and athletes who are helping to transform player development through the XYDO platform. As an ambassador, you'll earn rewards while sharing a program you believe in.
+                </p>
+                <button class="btn btn-primary btn-lg">Apply Now</button>
+            </div>
+            
+            <!-- Benefits Section -->
+            <h2 class="section-title">Ambassador Benefits</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3 class="benefit-title">Earn Commissions</h3>
+                    <p class="benefit-description">
+                        Receive generous commissions for every team or organization that joins XYDO through your referral link or code.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="benefit-title">Free Premium Access</h3>
+                    <p class="benefit-description">
+                        Get complimentary access to all premium features of the XYDO platform for yourself and your team.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="benefit-title">Increased Visibility</h3>
+                    <p class="benefit-description">
+                        Gain exposure through our website, social media channels, and marketing materials as a featured ambassador.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="benefit-title">Exclusive Community</h3>
+                    <p class="benefit-description">
+                        Connect with other influential coaches and athletes in our private ambassador community.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="benefit-title">Professional Development</h3>
+                    <p class="benefit-description">
+                        Access exclusive training resources and early previews of new features and content.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="benefit-title">Partnership Opportunities</h3>
+                    <p class="benefit-description">
+                        Collaborate on content creation, speaking engagements, and other professional opportunities.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- How It Works Section -->
+            <h2 class="section-title">How It Works</h2>
+            
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Apply to the Program</h3>
+                        <p class="step-description">
+                            Complete the application form below with information about your coaching experience, social media presence, and why you'd like to become a XYDO ambassador.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Get Approved</h3>
+                        <p class="step-description">
+                            Our team will review your application and reach out to discuss the partnership. We're looking for passionate advocates who believe in player development and have influence in the basketball community.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Receive Your Tools</h3>
+                        <p class="step-description">
+                            Once approved, you'll get access to your ambassador dashboard with your unique referral link, promotional materials, and tracking tools to monitor your referrals and commissions.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Share XYDO</h3>
+                        <p class="step-description">
+                            Promote XYDO ATHLETIC PROGRAMS to your network through social media, email, personal conversations, or at events. Share your authentic experience with the platform and how it's benefited your players.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Earn Rewards</h3>
+                        <p class="step-description">
+                            Track your referrals and earn commissions for every team or organization that signs up using your link. The more teams you refer, the higher your commission rate and the more rewards you unlock.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Level Up</h3>
+                        <p class="step-description">
+                            As you refer more teams and engage with the community, you'll advance through our ambassador levels, unlocking higher commission rates and exclusive benefits.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ambassador Levels -->
+            <h2 class="section-title">Ambassador Levels</h2>
+            
+            <div class="ambassador-levels">
+                <div class="level-tabs">
+                    <div class="level-tab active" data-level="rookie">Rookie</div>
+                    <div class="level-tab" data-level="all-star">All-Star</div>
+                    <div class="level-tab" data-level="mvp">MVP</div>
+                    <div class="level-tab" data-level="hall-of-fame">Hall of Fame</div>
+                </div>
+                
+                <div class="level-content active" id="rookie-level">
+                    <div class="level-header">
+                        <div class="level-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="level-info">
+                            <h3>Rookie Ambassador</h3>
+                            <p>Entry level for new ambassadors</p>
+                        </div>
+                    </div>
+                    
+                    <div class="level-details">
+                        <h4>Benefits</h4>
+                        <ul>
+                            <li>10% commission on all referrals</li>
+                            <li>Free premium access to XYDO for yourself</li>
+                            <li>Basic ambassador marketing materials</li>
+                            <li>Access to ambassador community</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="level-requirements">
+                        <h4>Requirements</h4>
+                        <ul>
+                            <li>Complete ambassador application</li>
+                            <li>Attend ambassador orientation webinar</li>
+                            <li>Share at least 1 XYDO post per month on social media</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="level-cta">
+                        <button class="btn btn-primary">Apply for Rookie Level</button>
+                    </div>
+                </div>
+                
+                <div class="level-content" id="all-star-level">
+                    <div class="level-header">
+                        <div class="level-icon">
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="level-info">
+                            <h3>All-Star Ambassador</h3>
+                            <p>Intermediate level for active ambassadors</p>
+                        </div>
+                    </div>
+                    
+                    <div class="level-details">
+                        <h4>Benefits</h4>
+                        <ul>
+                            <li>15% commission on all referrals</li>
+                            <li>Free premium access for yourself and up to 3 assistant coaches</li>
+                            <li>Enhanced marketing materials including custom graphics</li>
+                            <li>Featured ambassador spotlight on our website</li>
+                            <li>Early access to new features</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="level-requirements">
+                        <h4>Requirements</h4>
+                        <ul>
+                            <li>Successfully refer at least 3 teams</li>
+                            <li>Maintain Rookie level requirements</li>
+                            <li>Share at least 2 XYDO posts per month on social media</li>
+                            <li>Participate in quarterly ambassador calls</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="level-cta">
+                        <button class="btn btn-primary">Upgrade to All-Star Level</button>
+                    </div>
+                </div>
+                
+                <div class="level-content" id="mvp-level">
+                    <div class="level-header">
+                        <div class="level-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="level-info">
+                            <h3>MVP Ambassador</h3>
+                            <p>Advanced level for high-performing ambassadors</p>
+                        </div>
+                    </div>
+                    
+                    <div class="level-details">
+                        <h4>Benefits</h4>
+                        <ul>
+                            <li>20% commission on all referrals</li>
+                            <li>Free premium access for your entire coaching staff</li>
+                            <li>Custom co-branded marketing materials</li>
+                            <li>Guest blog and content creation opportunities</li>
+                            <li>Invitation to annual ambassador retreat</li>
+                            <li>Input on product development and new features</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="level-requirements">
+                        <h4>Requirements</h4>
+                        <ul>
+                            <li>Successfully refer at least 10 teams</li>
+                            <li>Maintain All-Star level requirements</li>
+                            <li>Create at least 1 piece of content about XYDO per quarter</li>
+                            <li>Host or participate in at least 1 XYDO webinar per year</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="level-cta">
+                        <button class="btn btn-primary">Upgrade to MVP Level</button>
+                    </div>
+                </div>
+                
+                <div class="level-content" id="hall-of-fame-level">
+                    <div class="level-header">
+                        <div class="level-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="level-info">
+                            <h3>Hall of Fame Ambassador</h3>
+                            <p>Elite level for top-performing ambassadors</p>
+                        </div>
+                    </div>
+                    
+                    <div class="level-details">
+                        <h4>Benefits</h4>
+                        <ul>
+                            <li>25% commission on all referrals</li>
+                            <li>Free premium access for your entire program</li>
+                            <li>Revenue sharing opportunities for content creation</li>
+                            <li>Speaking opportunities at XYDO events</li>
+                            <li>Featured in XYDO marketing campaigns</li>
+                            <li>Exclusive partnership opportunities</li>
+                            <li>Direct input on product roadmap</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="level-requirements">
+                        <h4>Requirements</h4>
+                        <ul>
+                            <li>Successfully refer at least 25 teams</li>
+                            <li>Maintain MVP level requirements</li>
+                            <li>Create regular content featuring XYDO</li>
+                            <li>Serve as a mentor to new ambassadors</li>
+                            <li>Participate in ambassador advisory board</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="level-cta">
+                        <button class="btn btn-primary">Upgrade to Hall of Fame Level</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ambassador Tools -->
+            <h2 class="section-title">Ambassador Tools</h2>
+            
+            <div class="ambassador-tools">
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3 class="tool-title">Custom Referral Links</h3>
+                        <p class="tool-description">
+                            Track all your referrals with personalized links that you can share on social media, email, or your website.
+                        </p>
+                        <a href="#" class="tool-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="tool-title">Performance Dashboard</h3>
+                        <p class="tool-description">
+                            Monitor your referrals, commissions, and ambassador level progress in real-time with our intuitive dashboard.
+                        </p>
+                        <a href="#" class="tool-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <h3 class="tool-title">Marketing Materials</h3>
+                        <p class="tool-description">
+                            Access a library of professional graphics, videos, and copy that you can use to promote XYDO on your channels.
+                        </p>
+                        <a href="#" class="tool-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="tool-title">Content Calendar</h3>
+                        <p class="tool-description">
+                            Stay organized with our content calendar that suggests optimal times to share XYDO content with your audience.
+                        </p>
+                        <a href="#" class="tool-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="tool-title">Ambassador Community</h3>
+                        <p class="tool-description">
+                            Connect with other ambassadors to share strategies, ask questions, and collaborate on promotional efforts.
+                        </p>
+                        <a href="#" class="tool-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="tool-title">Training Resources</h3>
+                        <p class="tool-description">
+                            Access exclusive training materials to help you effectively communicate the benefits of XYDO to potential users.
+                        </p>
+                        <a href="#" class="tool-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonials Section -->
+            <h2 class="section-title">Ambassador Success Stories</h2>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <p class="testimonial-content">
+                            Being a XYDO ambassador has been incredibly rewarding. Not only have I earned significant commissions, but I've also connected with amazing coaches across the country and helped improve player development in my community.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Marcus Williams">
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Marcus Williams</h4>
+                                <p class="author-role">MVP Ambassador, Head Coach</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <p class="testimonial-content">
+                            I started as a Rookie ambassador just sharing XYDO with a few local teams. Within a year, I had referred over 15 programs and reached MVP status. The commission has become a significant additional income stream for me.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Alicia Johnson">
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Alicia Johnson</h4>
+                                <p class="author-role">MVP Ambassador, Skills Trainer</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <p class="testimonial-content">
+                            The ambassador program has opened doors for me professionally. Through connections I've made, I've been invited to speak at coaching clinics and have even developed my own training content that's now featured on the platform.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Chen">
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">David Chen</h4>
+                                <p class="author-role">Hall of Fame Ambassador, Director of Coaching</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Application Form -->
+            <h2 class="section-title">Apply to Become an Ambassador</h2>
+            
+            <div class="application-form">
+                <h3 class="form-title">Ambassador Application</h3>
+                
+                <form>
+                    <div class="form-group">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="position" class="form-label">Current Position</label>
+                        <input type="text" class="form-control" id="position" placeholder="e.g., Head Coach, Skills Trainer, Athletic Director">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="organization" class="form-label">Organization/Team</label>
+                        <input type="text" class="form-control" id="organization" placeholder="Enter your organization or team name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience" class="form-label">Years of Coaching Experience</label>
+                        <select class="form-control" id="experience">
+                            <option value="" selected disabled>Select years of experience</option>
+                            <option value="0-2">0-2 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="6-10">6-10 years</option>
+                            <option value="11-20">11-20 years</option>
+                            <option value="20+">20+ years</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="socialMedia" class="form-label">Social Media Presence</label>
+                        <textarea class="form-control" id="socialMedia" rows="3" placeholder="List your social media handles and follower counts (Instagram, Twitter, Facebook, YouTube, etc.)"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="website" class="form-label">Website/Blog (if applicable)</label>
+                        <input type="url" class="form-control" id="website" placeholder="https://yourwebsite.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reach" class="form-label">Estimated Reach</label>
+                        <select class="form-control" id="reach">
+                            <option value="" selected disabled>Select estimated reach</option>
+                            <option value="local">Local (1-5 teams/organizations)</option>
+                            <option value="regional">Regional (6-20 teams/organizations)</option>
+                            <option value="state">State-wide (21-50 teams/organizations)</option>
+                            <option value="national">National (50+ teams/organizations)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whyJoin" class="form-label">Why do you want to become a XYDO ambassador?</label>
+                        <textarea class="form-control" id="whyJoin" rows="4" placeholder="Tell us why you're interested in becoming an ambassador"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="promotion" class="form-label">How would you promote XYDO?</label>
+                        <textarea class="form-control" id="promotion" rows="4" placeholder="Describe how you would share XYDO with your network"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">How did you hear about the Ambassador Program?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="source1">
+                            <label class="form-check-label" for="source1">Social Media</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="source2">
+                            <label class="form-check-label" for="source2">Email Newsletter</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="source3">
+                            <label class="form-check-label" for="source3">From Another Ambassador</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="source4">
+                            <label class="form-check-label" for="source4">XYDO Website</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="source5">
+                            <label class="form-check-label" for="source5">Other</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="termsCheck">
+                            <label class="form-check-label" for="termsCheck">
+                                I agree to the Ambassador Program Terms and Conditions and understand that all promotional activities must comply with XYDO's brand guidelines.
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary btn-lg">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- FAQ Section -->
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        <h3>How do I earn commissions as an ambassador?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You earn commissions when teams or organizations sign up for XYDO using your unique referral link or code. Commission rates range from 10% to 25% based on your ambassador level. Commissions are calculated on the initial subscription fee and recurring payments for as long as the referred team remains active.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>When and how are commissions paid?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Commissions are paid monthly for all qualifying referrals from the previous month. Payments are made via direct deposit, PayPal, or Venmo, depending on your preference. You must reach a minimum of $50 in commissions before a payment is issued.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What qualifies as a successful referral?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A successful referral occurs when a team or organization signs up for a paid XYDO subscription using your unique referral link or code. The referral must be a new customer who has not previously had a paid XYDO account. Free trial sign-ups do not qualify until they convert to a paid subscription.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long do I receive commissions for my referrals?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You receive commissions for the lifetime of the referred account, as long as they maintain an active paid subscription and you remain an active ambassador. This creates a recurring income stream that grows with each new referral.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What are the requirements to maintain ambassador status?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To maintain your ambassador status, you need to meet the minimum requirements for your current level, which typically includes regular social media sharing, participation in ambassador calls or webinars, and maintaining ethical promotional practices. If you're inactive for more than 6 months, your status may be reviewed.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I be an ambassador if I'm not a coach?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! While many of our ambassadors are coaches, we also welcome athletic directors, skills trainers, former players, basketball influencers, and others who are connected to the basketball community. The most important qualification is your ability to authentically promote XYDO to potential users.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Section -->
+            <div class="cta-container">
+                <h2 class="cta-title">Ready to Join Our Team?</h2>
+                <p class="cta-description">
+                    Become a XYDO Ambassador today and start earning rewards while helping teams and players reach their full potential. Join our community of passionate basketball advocates making a difference in player development.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary btn-lg">Apply Now</button>
+                    <button class="btn btn-secondary btn-lg">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle
+        document.getElementById('sidebar-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const toggleIcon = document.getElementById('toggle-icon');
+            
+            sidebar.classList.toggle('sidebar-collapsed');
+            mainContent.classList.toggle('main-content-expanded');
+            
+            if (sidebar.classList.contains('sidebar-collapsed')) {
+                toggleIcon.classList.remove('fa-chevron-left');
+                toggleIcon.classList.add('fa-chevron-right');
+            } else {
+                toggleIcon.classList.remove('fa-chevron-right');
+                toggleIcon.classList.add('fa-chevron-left');
+            }
+        });
+        
+        // FAQ toggle
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Ambassador level tabs
+        const levelTabs = document.querySelectorAll('.level-tab');
+        const levelContents = document.querySelectorAll('.level-content');
+        
+        levelTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                levelTabs.forEach(t => t.classList.remove('active'));
+                levelContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const levelId = tab.getAttribute('data-level');
+                document.getElementById(`${levelId}-level`).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

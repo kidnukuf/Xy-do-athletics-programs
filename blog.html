@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - XYDO ATHLETIC PROGRAMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .blog-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+        
+        .blog-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .blog-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .blog-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
+        }
+        
+        .blog-header h1 {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .blog-header p {
+            margin: 0;
+            max-width: 800px;
+            color: var(--light-text);
+        }
+        
+        .blog-filters {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-label {
+            font-weight: 500;
+            color: var(--gray-text);
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .filter-option {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .filter-option.active {
+            background-color: var(--primary-gold);
+            color: var(--dark-bg);
+        }
+        
+        .filter-option:hover:not(.active) {
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--primary-gold);
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-input {
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border-radius: 20px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--light-text);
+            width: 250px;
+            font-size: 0.9rem;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-text);
+        }
+        
+        .featured-post {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .featured-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-gold);
+        }
+        
+        .featured-image {
+            height: 300px;
+            position: relative;
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .featured-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background-color: var(--primary-gold);
+            color: var(--dark-bg);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .featured-content {
+            padding: 2rem;
+        }
+        
+        .featured-title {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .featured-title a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .featured-title a:hover {
+            color: var(--primary-gold);
+        }
+        
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+        
+        .featured-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .featured-excerpt {
+            margin: 0;
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        .featured-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .featured-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .author-name {
+            font-weight: 500;
+            color: var(--light-text);
+        }
+        
+        .author-role {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+        
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .post-card {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-gold);
+        }
+        
+        .post-image {
+            height: 200px;
+            position: relative;
+        }
+        
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .post-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            background-color: var(--primary-gold);
+            color: var(--dark-bg);
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+        
+        .post-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .post-title {
+            margin: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+        
+        .post-title a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .post-title a:hover {
+            color: var(--primary-gold);
+        }
+        
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--gray-text);
+            font-size: 0.8rem;
+        }
+        
+        .post-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .post-excerpt {
+            margin: 0;
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+            line-height: 1.6;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+        
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .post-author .author-avatar {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .post-author .author-name {
+            font-size: 0.9rem;
+        }
+        
+        .post-author .author-role {
+            font-size: 0.7rem;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        .pagination-item {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-item:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--primary-gold);
+        }
+        
+        .pagination-item.active {
+            background-color: var(--primary-gold);
+            color: var(--dark-bg);
+        }
+        
+        .sidebar-section {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .sidebar-title {
+            margin: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .sidebar-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gold-gradient);
+        }
+        
+        .categories-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .category-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .category-item:first-child {
+            padding-top: 0;
+        }
+        
+        .category-name {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--light-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .category-name:hover {
+            color: var(--primary-gold);
+        }
+        
+        .category-count {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+        
+        .popular-posts {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .popular-post {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .popular-post:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .popular-post:first-child {
+            padding-top: 0;
+        }
+        
+        .popular-post-image {
+            width: 80px;
+            height: 60px;
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .popular-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .popular-post-content {
+            flex: 1;
+        }
+        
+        .popular-post-title {
+            margin: 0;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .popular-post-title a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .popular-post-title a:hover {
+            color: var(--primary-gold);
+        }
+        
+        .popular-post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--gray-text);
+            font-size: 0.8rem;
+        }
+        
+        .popular-post-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--primary-gold);
+        }
+        
+        .newsletter-form {
+            margin-top: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+        
+        .btn-block {
+            width: 100%;
+        }
+        
+        .submit-article {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        
+        .submit-article p {
+            margin: 0;
+            margin-bottom: 1rem;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-filters {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .post-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+                <h3>XYDO ATHLETIC</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="weekly_content.html">
+                        <i class="fas fa-basketball-ball"></i>
+                        <span>Training Program</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>Skill Development</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-brain"></i>
+                        <span>Mental Training</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="video_library.html">
+                        <i class="fas fa-video"></i>
+                        <span>Video Library</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Progress Tracking</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-trophy"></i>
+                        <span>Achievements</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="team.html">
+                        <i class="fas fa-users"></i>
+                        <span>Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-calendar"></i>
+                        <span>Schedule</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="active">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="login.html" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-chevron-left" id="toggle-icon"></i>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Basketball Blog</h1>
+                    <p>Insights, tips, and stories from coaches and players.</p>
+                </div>
+            </div>
+            
+            <!-- Blog Header -->
+            <div class="blog-header">
+                <h1>XYDO Basketball Insights</h1>
+                <p>Explore articles on basketball skills, mental training, coaching strategies, and success stories from the XYDO community. Learn from experts and share your own experiences.</p>
+            </div>
+            
+            <!-- Blog Filters -->
+            <div class="blog-filters">
+                <div class="filter-group">
+                    <div class="filter-label">Categories:</div>
+                    <div class="filter-options">
+                        <div class="filter-option active">All</div>
+                        <div class="filter-option">Skills</div>
+                        <div class="filter-option">Mental Training</div>
+                        <div class="filter-option">Coaching</div>
+                        <div class="filter-option">Success Stories</div>
+                    </div>
+                </div>
+                
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search articles...">
+                </div>
+            </div>
+            
+            <!-- Blog Container -->
+            <div class="blog-container">
+                <!-- Blog Main Content -->
+                <div class="blog-main">
+                    <!-- Featured Post -->
+                    <div class="featured-post">
+                        <div class="featured-image">
+                            <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mental Toughness in Basketball">
+                            <div class="featured-category">Mental Training</div>
+                        </div>
+                        
+                        <div class="featured-content">
+                            <h2 class="featured-title">
+                                <a href="#">Building Mental Toughness: The Hidden Skill Every Basketball Player Needs</a>
+                            </h2>
+                            
+                            <div class="featured-meta">
+                                <div class="featured-meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>November 15, 2023</span>
+                                </div>
+                                
+                                <div class="featured-meta-item">
+                                    <i class="fas fa-comment"></i>
+                                    <span>24 Comments</span>
+                                </div>
+                                
+                                <div class="featured-meta-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span>1,245 Views</span>
+                                </div>
+                            </div>
+                            
+                            <p class="featured-excerpt">
+                                Mental toughness is often what separates good players from great ones. In this comprehensive guide, we explore practical techniques for developing resilience, focus, and confidence on the court. Learn how visualization, positive self-talk, and pressure training can transform your game and help you perform at your best when it matters most.
+                            </p>
+                            
+                            <div class="featured-footer">
+                                <div class="featured-author">
+                                    <div class="author-avatar">
+                                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                                    </div>
+                                    
+                                    <div class="author-info">
+                                        <div class="author-name">Sarah Johnson</div>
+                                        <div class="author-role">Mental Performance Coach</div>
+                                    </div>
+                                </div>
+                                
+                                <a href="#" class="btn btn-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Posts -->
+                    <h2>Recent Articles</h2>
+                    
+                    <div class="post-grid">
+                        <!-- Post 1 -->
+                        <div class="post-card">
+                            <div class="post-image">
+                                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Advanced Dribbling Techniques">
+                                <div class="post-category">Skills</div>
+                            </div>
+                            
+                            <div class="post-content">
+                                <h3 class="post-title">
+                                    <a href="#">5 Advanced Dribbling Techniques to Break Down Any Defense</a>
+                                </h3>
+                                
+                                <div class="post-meta">
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>November 10, 2023</span>
+                                    </div>
+                                    
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-comment"></i>
+                                        <span>18 Comments</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="post-excerpt">
+                                    Master these five advanced dribbling techniques to create space, beat defenders, and elevate your ball-handling skills to the next level.
+                                </p>
+                                
+                                <div class="post-footer">
+                                    <div class="post-author">
+                                        <div class="author-avatar">
+                                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Johnson">
+                                        </div>
+                                        
+                                        <div class="author-info">
+                                            <div class="author-name">Michael Johnson</div>
+                                            <div class="author-role">Player</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Post 2 -->
+                        <div class="post-card">
+                            <div class="post-image">
+                                <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coaching Youth Basketball">
+                                <div class="post-category">Coaching</div>
+                            </div>
+                            
+                            <div class="post-content">
+                                <h3 class="post-title">
+                                    <a href="#">The Art of Coaching Youth Basketball: Building Skills and Character</a>
+                                </h3>
+                                
+                                <div class="post-meta">
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>November 8, 2023</span>
+                                    </div>
+                                    
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-comment"></i>
+                                        <span>32 Comments</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="post-excerpt">
+                                    Effective youth coaching goes beyond teaching basketball skills. Learn how to develop character, instill values, and create a positive environment for young players.
+                                </p>
+                                
+                                <div class="post-footer">
+                                    <div class="post-author">
+                                        <div class="author-avatar">
+                                            <img src="https://randomuser.me/api/portraits/men/82.jpg" alt="Jorge Perez">
+                                        </div>
+                                        
+                                        <div class="author-info">
+                                            <div class="author-name">Jorge Perez</div>
+                                            <div class="author-role">Head Coach</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Post 3 -->
+                        <div class="post-card">
+                            <div class="post-image">
+                                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Shooting Form">
+                                <div class="post-category">Skills</div>
+                            </div>
+                            
+                            <div class="post-content">
+                                <h3 class="post-title">
+                                    <a href="#">Perfect Your Shooting Form: A Step-by-Step Guide</a>
+                                </h3>
+                                
+                                <div class="post-meta">
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>November 5, 2023</span>
+                                    </div>
+                                    
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-comment"></i>
+                                        <span>27 Comments</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="post-excerpt">
+                                    Develop a consistent and effective shooting form with this comprehensive guide covering stance, grip, release, and follow-through.
+                                </p>
+                                
+                                <div class="post-footer">
+                                    <div class="post-author">
+                                        <div class="author-avatar">
+                                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="David Williams">
+                                        </div>
+                                        
+                                        <div class="author-info">
+                                            <div class="author-name">David Williams</div>
+                                            <div class="author-role">Shooting Guard</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Post 4 -->
+                        <div class="post-card">
+                            <div class="post-image">
+                                <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Success Story">
+                                <div class="post-category">Success Stories</div>
+                            </div>
+                            
+                            <div class="post-content">
+                                <h3 class="post-title">
+                                    <a href="#">From Bench to Starter: How I Transformed My Game in One Season</a>
+                                </h3>
+                                
+                                <div class="post-meta">
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>November 1, 2023</span>
+                                    </div>
+                                    
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-comment"></i>
+                                        <span>45 Comments</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="post-excerpt">
+                                    Read the inspiring story of Thomas Davis, who went from bench player to starter through dedication, smart training, and mental preparation.
+                                </p>
+                                
+                                <div class="post-footer">
+                                    <div class="post-author">
+                                        <div class="author-avatar">
+                                            <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Thomas Davis">
+                                        </div>
+                                        
+                                        <div class="author-info">
+                                            <div class="author-name">Thomas Davis</div>
+                                            <div class="author-role">Center</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Post 5 -->
+                        <div class="post-card">
+                            <div class="post-image">
+                                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Defense Techniques">
+                                <div class="post-category">Skills</div>
+                            </div>
+                            
+                            <div class="post-content">
+                                <h3 class="post-title">
+                                    <a href="#">Lockdown Defense: Techniques to Shut Down Any Opponent</a>
+                                </h3>
+                                
+                                <div class="post-meta">
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>October 28, 2023</span>
+                                    </div>
+                                    
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-comment"></i>
+                                        <span>21 Comments</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="post-excerpt">
+                                    Learn the defensive techniques and mindset that will help you become a lockdown defender against any type of offensive player.
+                                </p>
+                                
+                                <div class="post-footer">
+                                    <div class="post-author">
+                                        <div class="author-avatar">
+                                            <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="James Smith">
+                                        </div>
+                                        
+                                        <div class="author-info">
+                                            <div class="author-name">James Smith</div>
+                                            <div class="author-role">Small Forward</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Post 6 -->
+                        <div class="post-card">
+                            <div class="post-image">
+                                <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Game-Day Preparation">
+                                <div class="post-category">Mental Training</div>
+                            </div>
+                            
+                            <div class="post-content">
+                                <h3 class="post-title">
+                                    <a href="#">Game-Day Preparation: Mental Routines for Peak Performance</a>
+                                </h3>
+                                
+                                <div class="post-meta">
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>October 25, 2023</span>
+                                    </div>
+                                    
+                                    <div class="post-meta-item">
+                                        <i class="fas fa-comment"></i>
+                                        <span>19 Comments</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="post-excerpt">
+                                    Discover effective pre-game routines and mental preparation techniques to ensure you're at your best when the game is on the line.
+                                </p>
+                                
+                                <div class="post-footer">
+                                    <div class="post-author">
+                                        <div class="author-avatar">
+                                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                                        </div>
+                                        
+                                        <div class="author-info">
+                                            <div class="author-name">Sarah Johnson</div>
+                                            <div class="author-role">Mental Performance Coach</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-item active">1</div>
+                        <div class="pagination-item">2</div>
+                        <div class="pagination-item">3</div>
+                        <div class="pagination-item">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </div>
+                        <div class="pagination-item">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Sidebar -->
+                <div class="blog-sidebar">
+                    <!-- Categories Section -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Categories</h3>
+                        
+                        <ul class="categories-list">
+                            <li class="category-item">
+                                <a href="#" class="category-name">
+                                    <i class="fas fa-basketball-ball"></i>
+                                    <span>Skills</span>
+                                </a>
+                                <span class="category-count">24</span>
+                            </li>
+                            
+                            <li class="category-item">
+                                <a href="#" class="category-name">
+                                    <i class="fas fa-brain"></i>
+                                    <span>Mental Training</span>
+                                </a>
+                                <span class="category-count">18</span>
+                            </li>
+                            
+                            <li class="category-item">
+                                <a href="#" class="category-name">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    <span>Coaching</span>
+                                </a>
+                                <span class="category-count">15</span>
+                            </li>
+                            
+                            <li class="category-item">
+                                <a href="#" class="category-name">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>Success Stories</span>
+                                </a>
+                                <span class="category-count">12</span>
+                            </li>
+                            
+                            <li class="category-item">
+                                <a href="#" class="category-name">
+                                    <i class="fas fa-users"></i>
+                                    <span>Team Building</span>
+                                </a>
+                                <span class="category-count">9</span>
+                            </li>
+                            
+                            <li class="category-item">
+                                <a href="#" class="category-name">
+                                    <i class="fas fa-heartbeat"></i>
+                                    <span>Health & Fitness</span>
+                                </a>
+                                <span class="category-count">7</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Popular Posts Section -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Popular Posts</h3>
+                        
+                        <ul class="popular-posts">
+                            <li class="popular-post">
+                                <div class="popular-post-image">
+                                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Shooting Mechanics">
+                                </div>
+                                
+                                <div class="popular-post-content">
+                                    <h4 class="popular-post-title">
+                                        <a href="#">The Science Behind Perfect Shooting Mechanics</a>
+                                    </h4>
+                                    
+                                    <div class="popular-post-meta">
+                                        <div class="popular-post-meta-item">
+                                            <i class="fas fa-eye"></i>
+                                            <span>2,345 views</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="popular-post">
+                                <div class="popular-post-image">
+                                    <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Leadership Skills">
+                                </div>
+                                
+                                <div class="popular-post-content">
+                                    <h4 class="popular-post-title">
+                                        <a href="#">10 Leadership Skills Every Team Captain Needs</a>
+                                    </h4>
+                                    
+                                    <div class="popular-post-meta">
+                                        <div class="popular-post-meta-item">
+                                            <i class="fas fa-eye"></i>
+                                            <span>1,987 views</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="popular-post">
+                                <div class="popular-post-image">
+                                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Off-Season Training">
+                                </div>
+                                
+                                <div class="popular-post-content">
+                                    <h4 class="popular-post-title">
+                                        <a href="#">Off-Season Training: Build Your Game When No One's Watching</a>
+                                    </h4>
+                                    
+                                    <div class="popular-post-meta">
+                                        <div class="popular-post-meta-item">
+                                            <i class="fas fa-eye"></i>
+                                            <span>1,756 views</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="popular-post">
+                                <div class="popular-post-image">
+                                    <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Game Analysis">
+                                </div>
+                                
+                                <div class="popular-post-content">
+                                    <h4 class="popular-post-title">
+                                        <a href="#">How to Analyze Game Film Like a Pro Coach</a>
+                                    </h4>
+                                    
+                                    <div class="popular-post-meta">
+                                        <div class="popular-post-meta-item">
+                                            <i class="fas fa-eye"></i>
+                                            <span>1,543 views</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tags Section -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Popular Tags</h3>
+                        
+                        <div class="tags-cloud">
+                            <a href="#" class="tag">Shooting</a>
+                            <a href="#" class="tag">Defense</a>
+                            <a href="#" class="tag">Dribbling</a>
+                            <a href="#" class="tag">Mental Toughness</a>
+                            <a href="#" class="tag">Team Building</a>
+                            <a href="#" class="tag">Leadership</a>
+                            <a href="#" class="tag">Training</a>
+                            <a href="#" class="tag">Game Strategy</a>
+                            <a href="#" class="tag">Conditioning</a>
+                            <a href="#" class="tag">Motivation</a>
+                            <a href="#" class="tag">Coaching</a>
+                            <a href="#" class="tag">Success</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter Section -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Newsletter</h3>
+                        
+                        <p>Subscribe to our newsletter to receive the latest articles, tips, and resources.</p>
+                        
+                        <form class="newsletter-form">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Your email address">
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Submit Article Section -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Share Your Knowledge</h3>
+                        
+                        <p>Have insights or experiences to share? Submit your own article to be featured on our blog.</p>
+                        
+                        <div class="submit-article">
+                            <p>Join our community of contributors and help others improve their game.</p>
+                            
+                            <button class="btn btn-secondary">Submit an Article</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle
+        document.getElementById('sidebar-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const toggleIcon = document.getElementById('toggle-icon');
+            
+            sidebar.classList.toggle('sidebar-collapsed');
+            mainContent.classList.toggle('main-content-expanded');
+            
+            if (sidebar.classList.contains('sidebar-collapsed')) {
+                toggleIcon.classList.remove('fa-chevron-left');
+                toggleIcon.classList.add('fa-chevron-right');
+            } else {
+                toggleIcon.classList.remove('fa-chevron-right');
+                toggleIcon.classList.add('fa-chevron-left');
+            }
+        });
+        
+        // Category filter
+        const filterOptions = document.querySelectorAll('.filter-option');
+        
+        filterOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from all options
+                filterOptions.forEach(opt => opt.classList.remove('active'));
+                
+                // Add active class to clicked option
+                this.classList.add('active');
+                
+                // In a real implementation, this would filter the posts
+            });
+        });
+    </script>
+</body>
+</html>

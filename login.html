@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - XYDO ATHLETIC PROGRAMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .auth-container {
+            background-image: linear-gradient(rgba(10, 49, 97, 0.85), rgba(18, 18, 18, 0.95)), url('images/basketball-court.jpg');
+            background-size: cover;
+            background-position: center;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gold-gradient);
+        }
+        
+        .auth-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gold-gradient);
+        }
+        
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .auth-logo img {
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-gold);
+        }
+        
+        .auth-tabs {
+            margin-bottom: 2rem;
+        }
+        
+        .auth-tab {
+            font-weight: 600;
+        }
+        
+        .auth-form .form-group {
+            position: relative;
+        }
+        
+        .auth-form .form-group i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-gold);
+        }
+        
+        .auth-form input[type="text"],
+        .auth-form input[type="email"],
+        .auth-form input[type="password"] {
+            padding-left: 40px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .auth-form input:focus {
+            background-color: rgba(255, 255, 255, 0.12);
+            border-color: var(--primary-gold);
+        }
+        
+        .auth-form button {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .auth-separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.5rem 0;
+            color: var(--gray-text);
+        }
+        
+        .auth-separator::before,
+        .auth-separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .auth-separator::before {
+            margin-right: .5em;
+        }
+        
+        .auth-separator::after {
+            margin-left: .5em;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--light-text);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-login-btn:hover {
+            transform: translateY(-3px);
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--primary-gold);
+        }
+        
+        .auth-links {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        .auth-links a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .auth-animation {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#blog">Blog</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="logo">
+                <img src="images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <section class="container" style="padding-top: 3rem; padding-bottom: 3rem;">
+        <div class="auth-container slide-up">
+            <div class="auth-animation" style="top: -150px; left: -150px;"></div>
+            <div class="auth-animation" style="bottom: -150px; right: -150px;"></div>
+            
+            <div class="auth-logo">
+                <img src="images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+            </div>
+            
+            <div class="section-title" style="margin-bottom: 2rem;">
+                <h2>Welcome Back</h2>
+            </div>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="user-tab">Player/Coach</div>
+                <div class="auth-tab" id="admin-tab">Administrator</div>
+            </div>
+            
+            <div id="loginError" style="display: none;"></div>
+            <div id="loginSuccess" style="display: none;"></div>
+            
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            
+            <form class="auth-form" id="admin-login-form" style="display: none;">
+                <div class="form-group">
+                    <i class="fas fa-user-shield"></i>
+                    <input type="text" id="admin-username" name="admin-username" placeholder="Admin Username" required>
+                </div>
+                
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="admin-password" name="admin-password" placeholder="Admin Password" required>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="admin-remember" name="admin-remember">
+                    <label for="admin-remember">Remember me</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Admin Login
+                </button>
+            </form>
+            
+            <div class="auth-separator">or continue with</div>
+            
+            <div class="social-login">
+                <a href="#" class="social-login-btn">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="#" class="social-login-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-login-btn">
+                    <i class="fab fa-apple"></i>
+                </a>
+            </div>
+            
+            <div class="auth-links">
+                <p><a href="forgot-password.html">Forgot Password?</a></p>
+                <p>Don't have an account? <a href="register.html">Register</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+                    </div>
+                    <p>XYDO ATHLETIC PROGRAMS is dedicated to developing athletes and coaches through comprehensive training programs that focus on both physical skills and mental abilities.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#blog">Blog</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Athletic Drive, Sports City, SC 12345</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@xydoathletic.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 XYDO ATHLETIC PROGRAMS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        document.getElementById('user-tab').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('admin-tab').classList.remove('active');
+            document.getElementById('user-login-form').style.display = 'block';
+            document.getElementById('admin-login-form').style.display = 'none';
+        });
+        
+        document.getElementById('admin-tab').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('user-tab').classList.remove('active');
+            document.getElementById('user-login-form').style.display = 'none';
+            document.getElementById('admin-login-form').style.display = 'block';
+        });
+        
+        // Form submission handlers
+        document.getElementById('user-login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate login success
+            // In a real implementation, this would validate credentials with a server
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'notification success';
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <span>Login successful! Redirecting to dashboard...</span>
+                    <button class="notification-close">&times;</button>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            // Add show class after a small delay to trigger animation
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Redirect to dashboard after a short delay
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        });
+        
+        document.getElementById('admin-login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate admin login success
+            // In a real implementation, this would validate admin credentials with a server
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'notification success';
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <span>Admin login successful! Redirecting to admin dashboard...</span>
+                    <button class="notification-close">&times;</button>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            // Add show class after a small delay to trigger animation
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Redirect to admin dashboard after a short delay
+            setTimeout(() => {
+                window.location.href = 'admin/dashboard.html';
+            }, 1500);
+        });
+    </script>
+
+    <!-- API Integration Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

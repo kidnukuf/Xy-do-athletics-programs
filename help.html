@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - XYDO ATHLETIC PROGRAMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .help-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+        
+        .help-sidebar {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            height: fit-content;
+        }
+        
+        .help-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .help-menu-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .help-menu-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .help-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            color: var(--light-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .help-menu-link:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .help-menu-link.active {
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--primary-gold);
+        }
+        
+        .help-menu-icon {
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .help-content {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .help-section {
+            margin-bottom: 3rem;
+        }
+        
+        .help-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .help-section-title {
+            margin: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--light-text);
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 1.5rem;
+        }
+        
+        .faq-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .faq-question {
+            margin: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            color: var(--primary-gold);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question:hover {
+            color: var(--primary-gold-hover);
+        }
+        
+        .faq-answer {
+            margin: 0;
+            color: var(--light-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: none;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        .contact-form {
+            margin-top: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--light-text);
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+        
+        .form-text {
+            color: var(--gray-text);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .video-tutorial {
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .video-tutorial:last-child {
+            margin-bottom: 0;
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 215, 0, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .video-play-button:hover {
+            background-color: var(--primary-gold);
+        }
+        
+        .video-play-button i {
+            color: var(--dark-bg);
+            font-size: 1.5rem;
+        }
+        
+        .video-info {
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-title {
+            margin: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: var(--light-text);
+        }
+        
+        .video-description {
+            margin: 0;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .resource-item:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+        
+        .resource-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary-gold);
+        }
+        
+        .resource-info {
+            flex: 1;
+        }
+        
+        .resource-title {
+            margin: 0;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+            color: var(--light-text);
+        }
+        
+        .resource-description {
+            margin: 0;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+        
+        .resource-download {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-download:hover {
+            color: var(--primary-gold-hover);
+        }
+        
+        @media (max-width: 768px) {
+            .help-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+                <h3>XYDO ATHLETIC</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="weekly_content.html">
+                        <i class="fas fa-basketball-ball"></i>
+                        <span>Training Program</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="video_library.html">
+                        <i class="fas fa-video"></i>
+                        <span>Video Library</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="team.html">
+                        <i class="fas fa-users"></i>
+                        <span>Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="blog.html">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="login.html" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-chevron-left" id="toggle-icon"></i>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Help & Support</h1>
+                    <p>Find answers to common questions and get support</p>
+                </div>
+            </div>
+            
+            <!-- Help Container -->
+            <div class="help-container">
+                <!-- Help Sidebar -->
+                <div class="help-sidebar">
+                    <ul class="help-menu">
+                        <li class="help-menu-item">
+                            <a href="#faq" class="help-menu-link active">
+                                <span class="help-menu-icon"><i class="fas fa-question-circle"></i></span>
+                                <span>FAQ</span>
+                            </a>
+                        </li>
+                        <li class="help-menu-item">
+                            <a href="#contact" class="help-menu-link">
+                                <span class="help-menu-icon"><i class="fas fa-envelope"></i></span>
+                                <span>Contact Support</span>
+                            </a>
+                        </li>
+                        <li class="help-menu-item">
+                            <a href="#tutorials" class="help-menu-link">
+                                <span class="help-menu-icon"><i class="fas fa-video"></i></span>
+                                <span>Video Tutorials</span>
+                            </a>
+                        </li>
+                        <li class="help-menu-item">
+                            <a href="#resources" class="help-menu-link">
+                                <span class="help-menu-icon"><i class="fas fa-file-alt"></i></span>
+                                <span>Resources</span>
+                            </a>
+                        </li>
+                        <li class="help-menu-item">
+                            <a href="#troubleshooting" class="help-menu-link">
+                                <span class="help-menu-icon"><i class="fas fa-wrench"></i></span>
+                                <span>Troubleshooting</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Help Content -->
+                <div class="help-content">
+                    <!-- FAQ Section -->
+                    <div class="help-section" id="faq">
+                        <h2 class="help-section-title">Frequently Asked Questions</h2>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>How do I join a team?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                To join a team, you need to receive a team code from your coach or team administrator. During registration, you'll be prompted to enter this code, which will automatically connect you to your team. If you've already registered, you can add a team code in your profile settings.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>How do I track my progress?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                Your progress is automatically tracked as you complete training modules and activities. You can view your progress on your dashboard, which shows completion percentages, skill development metrics, and earned achievements. For more detailed analytics, visit your profile page and click on the "Progress" tab.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>Can I access content offline?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                Currently, most content requires an internet connection to access. However, you can download practice plans and training guides as PDFs for offline use. We're working on an offline mode for the mobile app that will allow you to download videos for offline viewing in a future update.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>How do I provide feedback on training content?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                Each training module includes a feedback section where you can rate the content and provide written comments. Your feedback is valuable and helps us improve the platform. Coaches can view anonymous ratings and identified written feedback to adjust training plans accordingly.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>What devices can I use to access the platform?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                XYDO ATHLETIC PROGRAMS is accessible on any device with a web browser, including desktop computers, laptops, tablets, and smartphones. For the best experience, we recommend using Chrome, Firefox, Safari, or Edge browsers. We also have dedicated mobile apps for iOS and Android devices that provide enhanced features for on-the-go training.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>How do I reset my password?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                If you've forgotten your password, click on the "Forgot Password" link on the login page. Enter the email address associated with your account, and we'll send you a password reset link. For security reasons, the link expires after 24 hours. If you're still having trouble, please contact support.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>Can coaches customize the training program?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                Yes, coaches with admin privileges can customize the training program for their team. From the admin dashboard, coaches can adjust the content schedule, add custom drills and exercises, and tailor the program to their team's specific needs. Changes made by coaches will only affect their team's view of the platform.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>How do I become an ambassador for XYDO?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                To become an ambassador, visit the Ambassador Program page and fill out the application form. We look for coaches, players, and athletic directors who are passionate about basketball development and have an engaged community. Ambassadors receive special benefits including commission on referrals, exclusive content, and early access to new features.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Support Section -->
+                    <div class="help-section" id="contact" style="display: none;">
+                        <h2 class="help-section-title">Contact Support</h2>
+                        
+                        <p>Need help with something specific? Our support team is here to assist you. Please fill out the form below, and we'll get back to you as soon as possible.</p>
+                        
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Your name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Your email address">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject" class="form-label">Subject</label>
+                                <select class="form-control" id="subject">
+                                    <option value="">Select a subject</option>
+                                    <option value="account">Account Issues</option>
+                                    <option value="billing">Billing & Subscription</option>
+                                    <option value="technical">Technical Problems</option>
+                                    <option value="content">Content Questions</option>
+                                    <option value="feedback">Feedback & Suggestions</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="5" placeholder="Describe your issue or question in detail"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="attachment" class="form-label">Attachment (optional)</label>
+                                <input type="file" class="form-control" id="attachment">
+                                <div class="form-text">Max file size: 10MB. Supported formats: JPG, PNG, PDF.</div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        
+                        <div class="mt-4">
+                            <h3>Other Ways to Reach Us</h3>
+                            <p><strong>Email:</strong> support@xydoathletic.com</p>
+                            <p><strong>Phone:</strong> (555) 123-4567 (Monday-Friday, 9am-5pm EST)</p>
+                            <p><strong>Live Chat:</strong> Available in the bottom right corner of your screen during business hours</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Tutorials Section -->
+                    <div class="help-section" id="tutorials" style="display: none;">
+                        <h2 class="help-section-title">Video Tutorials</h2>
+                        
+                        <div class="video-tutorial">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Getting Started with XYDO">
+                                <div class="video-play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <h3 class="video-title">Getting Started with XYDO ATHLETIC PROGRAMS</h3>
+                                <p class="video-description">Learn how to set up your account, join a team, and navigate the platform.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="video-tutorial">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Coach's Guide to XYDO">
+                                <div class="video-play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <h3 class="video-title">Coach's Guide to XYDO ATHLETIC PROGRAMS</h3>
+                                <p class="video-description">A comprehensive guide for coaches on managing teams, customizing content, and tracking player progress.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="video-tutorial">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Player's Guide to XYDO">
+                                <div class="video-play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <h3 class="video-title">Player's Guide to XYDO ATHLETIC PROGRAMS</h3>
+                                <p class="video-description">Learn how to make the most of your training program, track progress, and earn achievements.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="video-tutorial">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Advanced Features">
+                                <div class="video-play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <h3 class="video-title">Advanced Features and Tips</h3>
+                                <p class="video-description">Discover advanced features and tips to get the most out of the XYDO platform.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resources Section -->
+                    <div class="help-section" id="resources" style="display: none;">
+                        <h2 class="help-section-title">Resources</h2>
+                        
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3 class="resource-title">User Manual</h3>
+                                <p class="resource-description">Complete guide to using the XYDO ATHLETIC PROGRAMS platform</p>
+                            </div>
+                            <a href="#" class="resource-download">
+                                <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3 class="resource-title">Coach's Handbook</h3>
+                                <p class="resource-description">Comprehensive guide for coaches using the platform</p>
+                            </div>
+                            <a href="#" class="resource-download">
+                                <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3 class="resource-title">Player's Guide</h3>
+                                <p class="resource-description">Essential information for players using the platform</p>
+                            </div>
+                            <a href="#" class="resource-download">
+                                <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3 class="resource-title">Progress Tracking Template</h3>
+                                <p class="resource-description">Excel template for tracking player progress offline</p>
+                            </div>
+                            <a href="#" class="resource-download">
+                                <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-word"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3 class="resource-title">Practice Plan Templates</h3>
+                                <p class="resource-description">Customizable practice plan templates for coaches</p>
+                            </div>
+                            <a href="#" class="resource-download">
+                                <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3 class="resource-title">Skill Assessment Forms</h3>
+                                <p class="resource-description">Forms for evaluating player skills and progress</p>
+                            </div>
+                            <a href="#" class="resource-download">
+                                <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Troubleshooting Section -->
+                    <div class="help-section" id="troubleshooting" style="display: none;">
+                        <h2 class="help-section-title">Troubleshooting</h2>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>Videos won't play or are buffering constantly</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                <strong>Solution:</strong> Try the following steps:
+                                <ol>
+                                    <li>Check your internet connection speed (minimum 5 Mbps recommended)</li>
+                                    <li>Lower the video quality in the player settings</li>
+                                    <li>Close other applications or browser tabs that might be using bandwidth</li>
+                                    <li>Clear your browser cache and cookies</li>
+                                    <li>Try a different browser or device</li>
+                                </ol>
+                                If the problem persists, please contact support with details about your device and internet connection.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>Can't log in to my account</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                <strong>Solution:</strong> Try the following steps:
+                                <ol>
+                                    <li>Double-check that you're using the correct email address and password</li>
+                                    <li>Make sure Caps Lock is turned off</li>
+                                    <li>Reset your password using the "Forgot Password" link</li>
+                                    <li>Clear your browser cache and cookies</li>
+                                    <li>Try a different browser or device</li>
+                                </ol>
+                                If you still can't log in, contact support with your account email address.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>Progress isn't being tracked correctly</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                <strong>Solution:</strong> Try the following steps:
+                                <ol>
+                                    <li>Make sure you're completing activities fully (watching videos to the end, submitting all required feedback)</li>
+                                    <li>Check that you're logged in with the correct account</li>
+                                    <li>Refresh your browser or app</li>
+                                    <li>Log out and log back in</li>
+                                    <li>Wait 15-30 minutes for progress to sync across devices</li>
+                                </ol>
+                                If your progress still isn't tracking correctly, please contact support with specific examples of the affected activities.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>Team code isn't working</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                <strong>Solution:</strong> Try the following steps:
+                                <ol>
+                                    <li>Double-check that you're entering the code exactly as provided (codes are case-sensitive)</li>
+                                    <li>Make sure the code hasn't expired (team codes typically expire after 7 days)</li>
+                                    <li>Confirm with your coach or administrator that they've generated a valid code</li>
+                                    <li>Check that you haven't already joined the team with a different account</li>
+                                </ol>
+                                If the code still doesn't work, ask your coach or administrator to generate a new code.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>App crashes or freezes</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                <strong>Solution:</strong> Try the following steps:
+                                <ol>
+                                    <li>Close and reopen the app or browser</li>
+                                    <li>Update to the latest version of the app or browser</li>
+                                    <li>Restart your device</li>
+                                    <li>Check that your device meets the minimum system requirements</li>
+                                    <li>Uninstall and reinstall the app (mobile users)</li>
+                                </ol>
+                                If the problem persists, please contact support with details about your device, operating system, and when the crashes occur.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3 class="faq-question">
+                                <span>Payment or billing issues</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
+                            <p class="faq-answer">
+                                <strong>Solution:</strong> For payment or billing issues:
+                                <ol>
+                                    <li>Check that your payment method is valid and hasn't expired</li>
+                                    <li>Verify that your billing address matches your card information</li>
+                                    <li>Check your email for any payment notifications or receipts</li>
+                                    <li>Review your subscription status in the Settings > Billing section</li>
+                                </ol>
+                                For specific billing questions or to report unauthorized charges, please contact our billing department at billing@xydoathletic.com.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle
+        document.getElementById('sidebar-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const toggleIcon = document.getElementById('toggle-icon');
+            
+            sidebar.classList.toggle('sidebar-collapsed');
+            mainContent.classList.toggle('main-content-expanded');
+            
+            if (sidebar.classList.contains('sidebar-collapsed')) {
+                toggleIcon.classList.remove('fa-chevron-left');
+                toggleIcon.classList.add('fa-chevron-right');
+            } else {
+                toggleIcon.classList.remove('fa-chevron-right');
+                toggleIcon.classList.add('fa-chevron-left');
+            }
+        });
+        
+        // Help navigation
+        const helpLinks = document.querySelectorAll('.help-menu-link');
+        const helpSections = document.querySelectorAll('.help-section');
+        
+        helpLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                helpLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Hide all sections
+                helpSections.forEach(section => section.style.display = 'none');
+                
+                // Show the corresponding section
+                const sectionId = this.getAttribute('href').substring(1);
+                document.getElementById(sectionId).style.display = 'block';
+            });
+        });
+        
+        // FAQ toggle
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                answer.classList.toggle('show');
+                
+                if (answer.classList.contains('show')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

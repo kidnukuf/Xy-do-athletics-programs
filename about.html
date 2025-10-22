@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - XYDO ATHLETIC PROGRAMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .about-section {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .about-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .about-section-title {
+            margin: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .about-content {
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .mission-box, .vision-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-gold);
+        }
+        
+        .mission-box h3, .vision-box h3 {
+            margin: 0;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+            font-size: 1.3rem;
+        }
+        
+        .mission-box p, .vision-box p {
+            margin: 0;
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .team-member {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .team-photo {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 1.5rem;
+        }
+        
+        .team-name {
+            margin: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            color: var(--light-text);
+        }
+        
+        .team-title {
+            margin: 0;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+        }
+        
+        .team-bio {
+            margin: 0;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .team-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .team-social a {
+            color: var(--gray-text);
+            transition: color 0.3s ease;
+        }
+        
+        .team-social a:hover {
+            color: var(--primary-gold);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: rgba(255, 215, 0, 0.2);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--dark-bg);
+            border: 4px solid var(--primary-gold);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .timeline-left {
+            left: 0;
+        }
+        
+        .timeline-right {
+            left: 50%;
+        }
+        
+        .timeline-left::after {
+            right: -10px;
+        }
+        
+        .timeline-right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .timeline-date {
+            color: var(--primary-gold);
+            font-weight: 600;
+            margin: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            margin: 0;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+        
+        .timeline-text {
+            margin: 0;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .value-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+        }
+        
+        .value-title {
+            margin: 0;
+            margin-bottom: 0.8rem;
+            color: var(--light-text);
+            font-size: 1.2rem;
+        }
+        
+        .value-description {
+            margin: 0;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .testimonials {
+            margin-top: 2rem;
+        }
+        
+        .testimonial-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .testimonial-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .testimonial-content {
+            margin: 0;
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+            font-style: italic;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .testimonial-content::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--primary-gold);
+            opacity: 0.5;
+            line-height: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-info h4 {
+            margin: 0;
+            margin-bottom: 0.3rem;
+            color: var(--light-text);
+            font-size: 1rem;
+        }
+        
+        .testimonial-info p {
+            margin: 0;
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+        }
+        
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .partner-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            transition: transform 0.3s ease;
+        }
+        
+        .partner-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .partner-logo {
+            max-width: 100%;
+            max-height: 80px;
+            filter: grayscale(100%) brightness(1.2);
+            transition: filter 0.3s ease;
+        }
+        
+        .partner-item:hover .partner-logo {
+            filter: grayscale(0%);
+        }
+        
+        @media (max-width: 768px) {
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .timeline-right {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+                <h3>XYDO ATHLETIC</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="weekly_content.html">
+                        <i class="fas fa-basketball-ball"></i>
+                        <span>Training Program</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="video_library.html">
+                        <i class="fas fa-video"></i>
+                        <span>Video Library</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="team.html">
+                        <i class="fas fa-users"></i>
+                        <span>Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="blog.html">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="login.html" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-chevron-left" id="toggle-icon"></i>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>About XYDO ATHLETIC PROGRAMS</h1>
+                    <p>Learn about our mission, team, and journey</p>
+                </div>
+            </div>
+            
+            <!-- About Content -->
+            <div class="about-section">
+                <h2 class="about-section-title">Our Story</h2>
+                <div class="about-content">
+                    <p>XYDO ATHLETIC PROGRAMS was founded in 2023 with a simple but powerful vision: to revolutionize athletic development by making professional-level training accessible to athletes and coaches at all levels. What began as a basketball-specific training platform has evolved into a comprehensive athletic development ecosystem designed to nurture both physical skills and mental fortitude.</p>
+                    
+                    <p>Our journey started when a group of coaches, athletes, and technology experts came together to address a common challenge: the lack of structured, accessible training resources for teams outside the professional and elite collegiate levels. We recognized that while talent is universal, access to quality training often isn't. This realization sparked the creation of XYDO—a platform that democratizes athletic excellence.</p>
+                    
+                    <p>Today, XYDO ATHLETIC PROGRAMS serves thousands of athletes and coaches across the country, providing them with the tools, resources, and community support needed to achieve their full potential. Our basketball program is just the beginning—we're expanding to include multiple sports while maintaining our core commitment to comprehensive development that addresses both physical skills and mental aspects of athletic performance.</p>
+                    
+                    <div class="mission-vision">
+                        <div class="mission-box">
+                            <h3>Our Mission</h3>
+                            <p>To empower athletes and coaches with accessible, comprehensive training resources that develop both physical skills and mental fortitude, creating pathways to excellence both on and off the court.</p>
+                        </div>
+                        <div class="vision-box">
+                            <h3>Our Vision</h3>
+                            <p>A world where every athlete, regardless of background or resources, has access to professional-quality training and development opportunities that unlock their full potential.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <h2 class="about-section-title">Our Values</h2>
+                <div class="about-content">
+                    <p>At XYDO ATHLETIC PROGRAMS, our values guide everything we do. They shape our platform, influence our content, and define our relationships with athletes, coaches, and communities.</p>
+                    
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h3 class="value-title">Excellence</h3>
+                            <p class="value-description">We pursue excellence in all aspects of our platform and content, setting high standards and continuously improving.</p>
+                        </div>
+                        
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3 class="value-title">Integrity</h3>
+                            <p class="value-description">We operate with honesty, transparency, and ethical principles in all our interactions and business practices.</p>
+                        </div>
+                        
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="value-title">Community</h3>
+                            <p class="value-description">We foster supportive communities where athletes and coaches can learn, grow, and succeed together.</p>
+                        </div>
+                        
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3 class="value-title">Holistic Development</h3>
+                            <p class="value-description">We believe in developing the whole athlete—physical skills, mental fortitude, and character.</p>
+                        </div>
+                        
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-door-open"></i>
+                            </div>
+                            <h3 class="value-title">Accessibility</h3>
+                            <p class="value-description">We make high-quality training accessible to athletes and coaches regardless of location or resources.</p>
+                        </div>
+                        
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 class="value-title">Innovation</h3>
+                            <p class="value-description">We embrace technology and new approaches to continuously improve athletic development.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <h2 class="about-section-title">Our Team</h2>
+                <div class="about-content">
+                    <p>XYDO ATHLETIC PROGRAMS is powered by a diverse team of coaches, athletes, educators, and technology experts who share a passion for athletic development and innovation.</p>
+                    
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="team-photo">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Johnson">
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">Michael Johnson</h3>
+                                <p class="team-title">Founder & CEO</p>
+                                <p class="team-bio">Former NCAA Division I basketball coach with 15+ years of experience in athletic development and sports education.</p>
+                                <div class="team-social">
+                                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="team-photo">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Williams">
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">Sarah Williams</h3>
+                                <p class="team-title">Chief Content Officer</p>
+                                <p class="team-bio">Sports psychologist and former professional basketball player with expertise in mental performance training.</p>
+                                <div class="team-social">
+                                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="team-photo">
+                                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="David Chen">
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">David Chen</h3>
+                                <p class="team-title">CTO</p>
+                                <p class="team-bio">Technology leader with extensive experience in educational technology and sports analytics platforms.</p>
+                                <div class="team-social">
+                                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#"><i class="fab fa-github"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="team-photo">
+                                <img src="https://randomuser.me/api/portraits/women/29.jpg" alt="Maria Rodriguez">
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">Maria Rodriguez</h3>
+                                <p class="team-title">Head of Coaching Development</p>
+                                <p class="team-bio">Veteran high school and college coach with a passion for developing coaching excellence at all levels.</p>
+                                <div class="team-social">
+                                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <h2 class="about-section-title">Our Journey</h2>
+                <div class="about-content">
+                    <p>The evolution of XYDO ATHLETIC PROGRAMS reflects our commitment to continuous improvement and expansion of our mission to support athletes and coaches.</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item timeline-left">
+                            <div class="timeline-content">
+                                <h3 class="timeline-date">2023</h3>
+                                <h4 class="timeline-title">Foundation</h4>
+                                <p class="timeline-text">XYDO ATHLETIC PROGRAMS was founded with a focus on basketball skill development and training resources.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-right">
+                            <div class="timeline-content">
+                                <h3 class="timeline-date">2023</h3>
+                                <h4 class="timeline-title">First Team Partnerships</h4>
+                                <p class="timeline-text">Launched pilot programs with 10 high school basketball teams across the country.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-left">
+                            <div class="timeline-content">
+                                <h3 class="timeline-date">2024</h3>
+                                <h4 class="timeline-title">Mental Training Integration</h4>
+                                <p class="timeline-text">Expanded platform to include comprehensive mental training resources alongside physical skill development.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-right">
+                            <div class="timeline-content">
+                                <h3 class="timeline-date">2024</h3>
+                                <h4 class="timeline-title">Coach Development Focus</h4>
+                                <p class="timeline-text">Launched dedicated resources for coaches, focusing on leadership, communication, and program building.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-left">
+                            <div class="timeline-content">
+                                <h3 class="timeline-date">2025</h3>
+                                <h4 class="timeline-title">Platform Expansion</h4>
+                                <p class="timeline-text">Redesigned platform with enhanced features including progress tracking, team management, and community features.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-right">
+                            <div class="timeline-content">
+                                <h3 class="timeline-date">2025</h3>
+                                <h4 class="timeline-title">Multi-Sport Vision</h4>
+                                <p class="timeline-text">Began development of framework to expand XYDO's approach to additional sports beyond basketball.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <h2 class="about-section-title">Testimonials</h2>
+                <div class="about-content">
+                    <p>Don't just take our word for it. Here's what coaches and athletes are saying about XYDO ATHLETIC PROGRAMS:</p>
+                    
+                    <div class="testimonials">
+                        <div class="testimonial-item">
+                            <p class="testimonial-content">XYDO has transformed our basketball program. The structured approach to skill development combined with the mental training resources has helped our players reach new levels. As a coach, the platform has given me tools I never had access to before.</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Coach Thomas">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4>Coach Robert Thomas</h4>
+                                    <p>Head Basketball Coach, Lincoln High School</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-item">
+                            <p class="testimonial-content">The mental training aspect of XYDO has been a game-changer for me. I've always worked on my physical skills, but the visualization techniques and confidence-building exercises have taken my game to another level. I'm playing with more focus and composure than ever before.</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Jasmine Taylor">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4>Jasmine Taylor</h4>
+                                    <p>Point Guard, Westside Academy</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-item">
+                            <p class="testimonial-content">As an athletic director overseeing multiple sports programs, I've been impressed with how XYDO has elevated our basketball program. The coaches have better resources, the players are more engaged, and the structured approach has created a more cohesive development pathway from freshman to varsity.</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Marcus Johnson">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4>Marcus Johnson</h4>
+                                    <p>Athletic Director, Eastside High School</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <h2 class="about-section-title">Our Partners</h2>
+                <div class="about-content">
+                    <p>XYDO ATHLETIC PROGRAMS collaborates with leading organizations in sports, education, and technology to enhance our platform and expand our impact.</p>
+                    
+                    <div class="partners-grid">
+                        <div class="partner-item">
+                            <img src="https://via.placeholder.com/150x80?text=Partner+Logo" alt="Partner Logo" class="partner-logo">
+                        </div>
+                        <div class="partner-item">
+                            <img src="https://via.placeholder.com/150x80?text=Partner+Logo" alt="Partner Logo" class="partner-logo">
+                        </div>
+                        <div class="partner-item">
+                            <img src="https://via.placeholder.com/150x80?text=Partner+Logo" alt="Partner Logo" class="partner-logo">
+                        </div>
+                        <div class="partner-item">
+                            <img src="https://via.placeholder.com/150x80?text=Partner+Logo" alt="Partner Logo" class="partner-logo">
+                        </div>
+                        <div class="partner-item">
+                            <img src="https://via.placeholder.com/150x80?text=Partner+Logo" alt="Partner Logo" class="partner-logo">
+                        </div>
+                        <div class="partner-item">
+                            <img src="https://via.placeholder.com/150x80?text=Partner+Logo" alt="Partner Logo" class="partner-logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <h2 class="about-section-title">Join Our Journey</h2>
+                <div class="about-content">
+                    <p>We're just getting started on our mission to revolutionize athletic development. Whether you're a coach looking to elevate your program, an athlete striving to reach your potential, or an organization interested in partnering with us, we invite you to join the XYDO community.</p>
+                    
+                    <p>Explore our <a href="case_study.html">Case Study Program</a> to see how teams are benefiting from XYDO, or learn about our <a href="ambassador.html">Ambassador Program</a> to become an advocate for our platform.</p>
+                    
+                    <p>Ready to transform your athletic development? <a href="register.html">Sign up today</a> or <a href="help.html#contact">contact us</a> to learn more about how XYDO can support your goals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle
+        document.getElementById('sidebar-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const toggleIcon = document.getElementById('toggle-icon');
+            
+            sidebar.classList.toggle('sidebar-collapsed');
+            mainContent.classList.toggle('main-content-expanded');
+            
+            if (sidebar.classList.contains('sidebar-collapsed')) {
+                toggleIcon.classList.remove('fa-chevron-left');
+                toggleIcon.classList.add('fa-chevron-right');
+            } else {
+                toggleIcon.classList.remove('fa-chevron-right');
+                toggleIcon.classList.add('fa-chevron-left');
+            }
+        });
+    </script>
+</body>
+</html>

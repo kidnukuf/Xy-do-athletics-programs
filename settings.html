@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - XYDO ATHLETIC PROGRAMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .settings-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+        
+        .settings-sidebar {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            height: fit-content;
+        }
+        
+        .settings-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .settings-menu-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .settings-menu-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .settings-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            color: var(--light-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .settings-menu-link:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .settings-menu-link.active {
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--primary-gold);
+        }
+        
+        .settings-menu-icon {
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .settings-content {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .settings-section {
+            margin-bottom: 3rem;
+        }
+        
+        .settings-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .settings-section-title {
+            margin: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--light-text);
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--light-text);
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+        
+        .form-text {
+            color: var(--gray-text);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .form-check:last-child {
+            margin-bottom: 0;
+        }
+        
+        .form-check-input {
+            margin-top: 0.3rem;
+        }
+        
+        .form-check-label {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .avatar-upload {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .avatar-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .avatar-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .avatar-controls {
+            flex: 1;
+        }
+        
+        .avatar-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .notification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .notification-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .notification-info h4 {
+            margin: 0;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+            color: var(--light-text);
+        }
+        
+        .notification-info p {
+            margin: 0;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+        
+        .notification-toggle {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .notification-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--light-text);
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--primary-gold);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+            background-color: var(--dark-bg);
+        }
+        
+        .connected-account {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .connected-account:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .account-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .account-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .account-icon.google {
+            color: #DB4437;
+        }
+        
+        .account-icon.facebook {
+            color: #4267B2;
+        }
+        
+        .account-icon.twitter {
+            color: #1DA1F2;
+        }
+        
+        .account-icon.apple {
+            color: #A2AAAD;
+        }
+        
+        .account-details h4 {
+            margin: 0;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+            color: var(--light-text);
+        }
+        
+        .account-details p {
+            margin: 0;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+        
+        .account-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .status-indicator.connected {
+            background-color: #4CAF50;
+        }
+        
+        .status-indicator.not-connected {
+            background-color: var(--gray-text);
+        }
+        
+        .status-text {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+        
+        .danger-zone {
+            background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .danger-zone-title {
+            color: #DC3545;
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .danger-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(220, 53, 69, 0.2);
+        }
+        
+        .danger-action:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .danger-info h4 {
+            margin: 0;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+            color: var(--light-text);
+        }
+        
+        .danger-info p {
+            margin: 0;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+        
+        .btn-danger {
+            background-color: transparent;
+            color: #DC3545;
+            border: 1px solid #DC3545;
+        }
+        
+        .btn-danger:hover {
+            background-color: #DC3545;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .settings-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .avatar-upload {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .avatar-preview {
+                margin: 0 auto;
+            }
+            
+            .form-buttons {
+                flex-direction: column;
+            }
+            
+            .form-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+                <h3>XYDO ATHLETIC</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="weekly_content.html">
+                        <i class="fas fa-basketball-ball"></i>
+                        <span>Training Program</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="video_library.html">
+                        <i class="fas fa-video"></i>
+                        <span>Video Library</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="team.html">
+                        <i class="fas fa-users"></i>
+                        <span>Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="blog.html">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html" class="active">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="login.html" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-chevron-left" id="toggle-icon"></i>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Settings</h1>
+                    <p>Manage your account preferences and notifications</p>
+                </div>
+            </div>
+            
+            <!-- Settings Container -->
+            <div class="settings-container">
+                <!-- Settings Sidebar -->
+                <div class="settings-sidebar">
+                    <ul class="settings-menu">
+                        <li class="settings-menu-item">
+                            <a href="#account" class="settings-menu-link active">
+                                <span class="settings-menu-icon"><i class="fas fa-user-circle"></i></span>
+                                <span>Account</span>
+                            </a>
+                        </li>
+                        <li class="settings-menu-item">
+                            <a href="#profile" class="settings-menu-link">
+                                <span class="settings-menu-icon"><i class="fas fa-id-card"></i></span>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li class="settings-menu-item">
+                            <a href="#notifications" class="settings-menu-link">
+                                <span class="settings-menu-icon"><i class="fas fa-bell"></i></span>
+                                <span>Notifications</span>
+                            </a>
+                        </li>
+                        <li class="settings-menu-item">
+                            <a href="#appearance" class="settings-menu-link">
+                                <span class="settings-menu-icon"><i class="fas fa-palette"></i></span>
+                                <span>Appearance</span>
+                            </a>
+                        </li>
+                        <li class="settings-menu-item">
+                            <a href="#security" class="settings-menu-link">
+                                <span class="settings-menu-icon"><i class="fas fa-shield-alt"></i></span>
+                                <span>Security</span>
+                            </a>
+                        </li>
+                        <li class="settings-menu-item">
+                            <a href="#connected-accounts" class="settings-menu-link">
+                                <span class="settings-menu-icon"><i class="fas fa-link"></i></span>
+                                <span>Connected Accounts</span>
+                            </a>
+                        </li>
+                        <li class="settings-menu-item">
+                            <a href="#privacy" class="settings-menu-link">
+                                <span class="settings-menu-icon"><i class="fas fa-user-shield"></i></span>
+                                <span>Privacy</span>
+                            </a>
+                        </li>
+                        <li class="settings-menu-item">
+                            <a href="#billing" class="settings-menu-link">
+                                <span class="settings-menu-icon"><i class="fas fa-credit-card"></i></span>
+                                <span>Billing</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Settings Content -->
+                <div class="settings-content">
+                    <!-- Account Settings -->
+                    <div class="settings-section" id="account">
+                        <h2 class="settings-section-title">Account Settings</h2>
+                        
+                        <form>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" value="coach@example.com">
+                                <div class="form-text">This email is used for login and notifications.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" value="coach_perez">
+                                <div class="form-text">Your username is visible to other users.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Account Type</label>
+                                <div class="form-control" style="background-color: rgba(255, 215, 0, 0.1); border-color: var(--primary-gold);">
+                                    Coach
+                                </div>
+                                <div class="form-text">Your account type determines available features.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="timezone" class="form-label">Timezone</label>
+                                <select class="form-control" id="timezone">
+                                    <option value="Pacific/Honolulu">(GMT-10:00) Hawaii</option>
+                                    <option value="America/Anchorage">(GMT-09:00) Alaska</option>
+                                    <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
+                                    <option value="America/Denver">(GMT-07:00) Mountain Time (US & Canada)</option>
+                                    <option value="America/Chicago">(GMT-06:00) Central Time (US & Canada)</option>
+                                    <option value="America/New_York" selected>(GMT-05:00) Eastern Time (US & Canada)</option>
+                                    <option value="America/Halifax">(GMT-04:00) Atlantic Time (Canada)</option>
+                                    <option value="Europe/London">(GMT+00:00) London</option>
+                                    <option value="Europe/Paris">(GMT+01:00) Paris</option>
+                                    <option value="Asia/Tokyo">(GMT+09:00) Tokyo</option>
+                                </select>
+                                <div class="form-text">Your timezone is used for scheduling and notifications.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="language" class="form-label">Language</label>
+                                <select class="form-control" id="language">
+                                    <option value="en" selected>English</option>
+                                    <option value="es">Español</option>
+                                    <option value="fr">Français</option>
+                                    <option value="de">Deutsch</option>
+                                    <option value="zh">中文</option>
+                                    <option value="ja">日本語</option>
+                                </select>
+                                <div class="form-text">Your preferred language for the platform interface.</div>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Profile Settings -->
+                    <div class="settings-section" id="profile" style="display: none;">
+                        <h2 class="settings-section-title">Profile Settings</h2>
+                        
+                        <form>
+                            <div class="avatar-upload">
+                                <div class="avatar-preview">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile Avatar">
+                                </div>
+                                <div class="avatar-controls">
+                                    <label class="form-label">Profile Picture</label>
+                                    <div class="form-text">Upload a square image, at least 200x200 pixels.</div>
+                                    <div class="avatar-buttons">
+                                        <button type="button" class="btn btn-secondary">Upload New</button>
+                                        <button type="button" class="btn btn-outline-secondary">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" value="Jorge">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" value="Perez">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" value="Head Coach">
+                                <div class="form-text">Your role or position (e.g., Head Coach, Assistant Coach, etc.)</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="organization" class="form-label">Organization/Team</label>
+                                <input type="text" class="form-control" id="organization" value="Jackpot Jaguars">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bio" class="form-label">Bio</label>
+                                <textarea class="form-control" id="bio" rows="4">Head Coach of the Jackpot Jaguars with over 10 years of coaching experience. Focused on player development and building strong team culture.</textarea>
+                                <div class="form-text">Brief description visible on your profile (max 200 characters).</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" value="(555) 123-4567">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="website" class="form-label">Website</label>
+                                <input type="url" class="form-control" id="website" value="https://jackpotjaguars.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Social Media</label>
+                                
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fab fa-twitter"></i></span>
+                                        <input type="text" class="form-control" placeholder="Twitter username" value="@coachperez">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fab fa-instagram"></i></span>
+                                        <input type="text" class="form-control" placeholder="Instagram username" value="@coach_perez">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fab fa-linkedin"></i></span>
+                                        <input type="text" class="form-control" placeholder="LinkedIn profile URL" value="linkedin.com/in/jorgeperez">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Notification Settings -->
+                    <div class="settings-section" id="notifications" style="display: none;">
+                        <h2 class="settings-section-title">Notification Settings</h2>
+                        
+                        <form>
+                            <h3 class="mb-3">Email Notifications</h3>
+                            
+                            <div class="notification-item">
+                                <div class="notification-info">
+                                    <h4>Training Updates</h4>
+                                    <p>Receive notifications when new training content is available</p>
+                                </div>
+                                <label class="notification-toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="notification-item">
+                                <div class="notification-info">
+                                    <h4>Team Activity</h4>
+                                    <p>Receive notifications about your team's activity and progress</p>
+                                </div>
+                                <label class="notification-toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="notification-item">
+                                <div class="notification-info">
+                                    <h4>Feedback and Comments</h4>
+                                    <p>Receive notifications when someone comments on your content</p>
+                                </div>
+                                <label class="notification-toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="notification-item">
+                                <div class="notification-info">
+                                    <h4>Achievement Alerts</h4>
+                                    <p>Receive notifications when you or your team earns achievements</p>
+                                </div>
+                                <label class="notification-toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="notification-item">
+                                <div class="notification-info">
+                                    <h4>Platform Updates</h4>
+                                    <p>Receive notifications about new features and platform updates</p>
+                                </div>
+                                <label class="notification-toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="notification-item">
+                                <div class="notification-info">
+                                    <h4>Marketing and Promotions</h4>
+                                    <p>Receive occasional promotional content and special offers</p>
+                                </div>
+                                <label class="notification-toggle">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <h3 class="mb-3 mt-4">Push Notifications</h3>
+                            
+                            <div class="notification-item">
+                                <div class="notification-info">
+                                    <h4>Enable Push Notifications</h4>
+                                    <p>Receive notifications on your device when important events occur</p>
+                                </div>
+                                <label class="notification-toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Appearance Settings -->
+                    <div class="settings-section" id="appearance" style="display: none;">
+                        <h2 class="settings-section-title">Appearance Settings</h2>
+                        
+                        <form>
+                            <div class="form-group">
+                                <label class="form-label">Theme</label>
+                                <div class="theme-options">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="theme" id="darkTheme" checked>
+                                        <label class="form-check-label" for="darkTheme">
+                                            Dark Theme
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="theme" id="lightTheme">
+                                        <label class="form-check-label" for="lightTheme">
+                                            Light Theme
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="theme" id="systemTheme">
+                                        <label class="form-check-label" for="systemTheme">
+                                            System Default
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Font Size</label>
+                                <div class="font-size-options">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="fontSize" id="smallFont">
+                                        <label class="form-check-label" for="smallFont">
+                                            Small
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="fontSize" id="mediumFont" checked>
+                                        <label class="form-check-label" for="mediumFont">
+                                            Medium
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="fontSize" id="largeFont">
+                                        <label class="form-check-label" for="largeFont">
+                                            Large
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Dashboard Layout</label>
+                                <div class="layout-options">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="layout" id="compactLayout">
+                                        <label class="form-check-label" for="compactLayout">
+                                            Compact
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="layout" id="standardLayout" checked>
+                                        <label class="form-check-label" for="standardLayout">
+                                            Standard
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="layout" id="expandedLayout">
+                                        <label class="form-check-label" for="expandedLayout">
+                                            Expanded
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Security Settings -->
+                    <div class="settings-section" id="security" style="display: none;">
+                        <h2 class="settings-section-title">Security Settings</h2>
+                        
+                        <form>
+                            <div class="form-group">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="currentPassword" placeholder="Enter your current password">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="newPassword" placeholder="Enter your new password">
+                                <div class="form-text">Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your new password">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Two-Factor Authentication</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="twoFactorAuth" checked>
+                                    <label class="form-check-label" for="twoFactorAuth">
+                                        Enable Two-Factor Authentication
+                                    </label>
+                                </div>
+                                <div class="form-text">Adds an extra layer of security to your account by requiring a verification code in addition to your password.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Login History</label>
+                                <button type="button" class="btn btn-outline-secondary">View Login History</button>
+                                <div class="form-text">Review recent login activity on your account.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Active Sessions</label>
+                                <button type="button" class="btn btn-outline-secondary">Manage Active Sessions</button>
+                                <div class="form-text">View and manage devices currently logged into your account.</div>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Connected Accounts -->
+                    <div class="settings-section" id="connected-accounts" style="display: none;">
+                        <h2 class="settings-section-title">Connected Accounts</h2>
+                        
+                        <div class="connected-account">
+                            <div class="account-info">
+                                <div class="account-icon google">
+                                    <i class="fab fa-google"></i>
+                                </div>
+                                <div class="account-details">
+                                    <h4>Google</h4>
+                                    <p>coach@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="account-status">
+                                <span class="status-indicator connected"></span>
+                                <span class="status-text">Connected</span>
+                                <button class="btn btn-sm btn-outline-secondary ms-3">Disconnect</button>
+                            </div>
+                        </div>
+                        
+                        <div class="connected-account">
+                            <div class="account-info">
+                                <div class="account-icon facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </div>
+                                <div class="account-details">
+                                    <h4>Facebook</h4>
+                                    <p>Not connected</p>
+                                </div>
+                            </div>
+                            <div class="account-status">
+                                <span class="status-indicator not-connected"></span>
+                                <span class="status-text">Not Connected</span>
+                                <button class="btn btn-sm btn-outline-primary ms-3">Connect</button>
+                            </div>
+                        </div>
+                        
+                        <div class="connected-account">
+                            <div class="account-info">
+                                <div class="account-icon twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </div>
+                                <div class="account-details">
+                                    <h4>Twitter</h4>
+                                    <p>@coach_perez</p>
+                                </div>
+                            </div>
+                            <div class="account-status">
+                                <span class="status-indicator connected"></span>
+                                <span class="status-text">Connected</span>
+                                <button class="btn btn-sm btn-outline-secondary ms-3">Disconnect</button>
+                            </div>
+                        </div>
+                        
+                        <div class="connected-account">
+                            <div class="account-info">
+                                <div class="account-icon apple">
+                                    <i class="fab fa-apple"></i>
+                                </div>
+                                <div class="account-details">
+                                    <h4>Apple</h4>
+                                    <p>Not connected</p>
+                                </div>
+                            </div>
+                            <div class="account-status">
+                                <span class="status-indicator not-connected"></span>
+                                <span class="status-text">Not Connected</span>
+                                <button class="btn btn-sm btn-outline-primary ms-3">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Privacy Settings -->
+                    <div class="settings-section" id="privacy" style="display: none;">
+                        <h2 class="settings-section-title">Privacy Settings</h2>
+                        
+                        <form>
+                            <div class="form-group">
+                                <label class="form-label">Profile Visibility</label>
+                                <select class="form-control">
+                                    <option value="public">Public - Visible to everyone</option>
+                                    <option value="team" selected>Team Only - Visible to your team members</option>
+                                    <option value="private">Private - Visible only to you</option>
+                                </select>
+                                <div class="form-text">Control who can see your profile information.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Activity Visibility</label>
+                                <select class="form-control">
+                                    <option value="public">Public - Visible to everyone</option>
+                                    <option value="team" selected>Team Only - Visible to your team members</option>
+                                    <option value="private">Private - Visible only to you</option>
+                                </select>
+                                <div class="form-text">Control who can see your activity and progress.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Data Usage</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="analyticsConsent" checked>
+                                    <label class="form-check-label" for="analyticsConsent">
+                                        Allow XYDO to use my data for platform improvements
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="personalizationConsent" checked>
+                                    <label class="form-check-label" for="personalizationConsent">
+                                        Allow personalized content recommendations
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="marketingConsent">
+                                    <label class="form-check-label" for="marketingConsent">
+                                        Allow XYDO to use my data for marketing purposes
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Data Management</label>
+                                <button type="button" class="btn btn-outline-secondary">Download My Data</button>
+                                <div class="form-text">Request a copy of all your personal data stored on XYDO.</div>
+                            </div>
+                            
+                            <div class="danger-zone">
+                                <h3 class="danger-zone-title">Danger Zone</h3>
+                                
+                                <div class="danger-action">
+                                    <div class="danger-info">
+                                        <h4>Delete Account</h4>
+                                        <p>Permanently delete your account and all associated data.</p>
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-danger">Delete Account</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Billing Settings -->
+                    <div class="settings-section" id="billing" style="display: none;">
+                        <h2 class="settings-section-title">Billing Settings</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Current Plan</label>
+                            <div class="current-plan">
+                                <div class="plan-details">
+                                    <h4>Team Pro Plan</h4>
+                                    <p>$99/month, billed annually</p>
+                                    <p>Next billing date: October 15, 2025</p>
+                                </div>
+                                <button class="btn btn-outline-primary">Upgrade Plan</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Payment Method</label>
+                            <div class="payment-method">
+                                <div class="card-info">
+                                    <i class="fab fa-cc-visa"></i>
+                                    <span>Visa ending in 4242</span>
+                                    <span>Expires 12/25</span>
+                                </div>
+                                <button class="btn btn-outline-secondary">Update</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Billing Address</label>
+                            <address>
+                                Jorge Perez<br>
+                                123 Main Street<br>
+                                Jackpot, NV 89825<br>
+                                United States
+                            </address>
+                            <button class="btn btn-outline-secondary">Update</button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Billing History</label>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                        <th>Invoice</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Oct 15, 2024</td>
+                                        <td>Team Pro Plan (Annual)</td>
+                                        <td>$1,188.00</td>
+                                        <td><a href="#">Download</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oct 15, 2023</td>
+                                        <td>Team Pro Plan (Annual)</td>
+                                        <td>$1,188.00</td>
+                                        <td><a href="#">Download</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Cancel Subscription</label>
+                            <button class="btn btn-outline-danger">Cancel Subscription</button>
+                            <div class="form-text">Your subscription will remain active until the end of the current billing period.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle
+        document.getElementById('sidebar-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const toggleIcon = document.getElementById('toggle-icon');
+            
+            sidebar.classList.toggle('sidebar-collapsed');
+            mainContent.classList.toggle('main-content-expanded');
+            
+            if (sidebar.classList.contains('sidebar-collapsed')) {
+                toggleIcon.classList.remove('fa-chevron-left');
+                toggleIcon.classList.add('fa-chevron-right');
+            } else {
+                toggleIcon.classList.remove('fa-chevron-right');
+                toggleIcon.classList.add('fa-chevron-left');
+            }
+        });
+        
+        // Settings navigation
+        const settingsLinks = document.querySelectorAll('.settings-menu-link');
+        const settingsSections = document.querySelectorAll('.settings-section');
+        
+        settingsLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                settingsLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Hide all sections
+                settingsSections.forEach(section => section.style.display = 'none');
+                
+                // Show the corresponding section
+                const sectionId = this.getAttribute('href').substring(1);
+                document.getElementById(sectionId).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

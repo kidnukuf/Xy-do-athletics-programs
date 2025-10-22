@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study Program - XYDO ATHLETIC PROGRAMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .case-study-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 4rem 2rem;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .case-study-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
+        }
+        
+        .case-study-header h1 {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            color: var(--light-text);
+        }
+        
+        .case-study-header p {
+            margin: 0 auto;
+            max-width: 800px;
+            color: var(--light-text);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .benefit-card {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-gold);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-gold);
+        }
+        
+        .benefit-title {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--light-text);
+        }
+        
+        .benefit-description {
+            margin: 0;
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        .steps-container {
+            margin-bottom: 3rem;
+        }
+        
+        .step-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 70px;
+            left: 40px;
+            width: 2px;
+            height: calc(100% - 40px);
+            background-color: rgba(255, 215, 0, 0.2);
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+            padding-top: 1rem;
+        }
+        
+        .step-title {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--light-text);
+        }
+        
+        .step-description {
+            margin: 0;
+            color: var(--light-text);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonials-container {
+            margin-bottom: 3rem;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            position: relative;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-gold);
+        }
+        
+        .testimonial-quote {
+            font-size: 3rem;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            color: rgba(255, 215, 0, 0.1);
+        }
+        
+        .testimonial-content {
+            margin: 0;
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            color: var(--light-text);
+            margin: 0;
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-role {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .cta-container {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
+        }
+        
+        .cta-title {
+            margin: 0;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            color: var(--light-text);
+        }
+        
+        .cta-description {
+            margin: 0 auto;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .faq-container {
+            margin-bottom: 3rem;
+        }
+        
+        .faq-item {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--light-text);
+        }
+        
+        .faq-toggle {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--light-text);
+            line-height: 1.6;
+            display: none;
+        }
+        
+        .faq-item.active .faq-question {
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .application-form {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .form-title {
+            margin: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--light-text);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--light-text);
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-check:last-child {
+            margin-bottom: 0;
+        }
+        
+        .form-check-input {
+            margin-top: 0.3rem;
+        }
+        
+        .form-check-label {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        .form-text {
+            color: var(--gray-text);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .step-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .step-item:not(:last-child)::after {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+                <h3>XYDO ATHLETIC</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="weekly_content.html">
+                        <i class="fas fa-basketball-ball"></i>
+                        <span>Training Program</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="video_library.html">
+                        <i class="fas fa-video"></i>
+                        <span>Video Library</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="team.html">
+                        <i class="fas fa-users"></i>
+                        <span>Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="blog.html">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="case_study.html" class="active">
+                        <i class="fas fa-flask"></i>
+                        <span>Case Study Program</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="login.html" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-chevron-left" id="toggle-icon"></i>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Case Study Program</h1>
+                    <p>Join our exclusive program to showcase the impact of XYDO ATHLETIC PROGRAMS.</p>
+                </div>
+            </div>
+            
+            <!-- Case Study Header -->
+            <div class="case-study-header">
+                <h1>Be Part of Our Success Story</h1>
+                <p>
+                    Join our exclusive Case Study Program and receive free access to the complete XYDO ATHLETIC PROGRAMS platform in exchange for sharing your team's experience and results. Help us demonstrate the real-world impact of our basketball development system while accelerating your team's growth.
+                </p>
+                <button class="btn btn-primary btn-lg">Apply Now</button>
+            </div>
+            
+            <!-- Benefits Section -->
+            <h2 class="section-title">Program Benefits</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-unlock"></i>
+                    </div>
+                    <h3 class="benefit-title">Free Full Access</h3>
+                    <p class="benefit-description">
+                        Receive complimentary access to all premium features of the XYDO ATHLETIC PROGRAMS platform for your entire team throughout the case study period.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="benefit-title">Priority Support</h3>
+                    <p class="benefit-description">
+                        Get direct access to our development team with priority support to ensure your program implementation is smooth and effective.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="benefit-title">Performance Tracking</h3>
+                    <p class="benefit-description">
+                        Receive detailed analytics and performance reports to track your team's progress and identify areas for improvement.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="benefit-title">Featured Recognition</h3>
+                    <p class="benefit-description">
+                        Your team will be featured in our success stories, providing visibility and recognition for your program and players.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="benefit-title">Coaching Development</h3>
+                    <p class="benefit-description">
+                        Access exclusive coaching resources and personalized guidance to enhance your coaching effectiveness.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="benefit-title">Early Access</h3>
+                    <p class="benefit-description">
+                        Be the first to try new features and content before they're released to the general public.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- How It Works Section -->
+            <h2 class="section-title">How It Works</h2>
+            
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Apply for the Program</h3>
+                        <p class="step-description">
+                            Complete the application form below with information about your team, your goals, and why you'd like to participate in the case study program. We're looking for teams of all skill levels who are committed to player development.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Selection Process</h3>
+                        <p class="step-description">
+                            Our team will review all applications and select a diverse group of teams to participate in the program. We'll notify all applicants within two weeks of submission, and selected teams will receive immediate access to the platform.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Implementation & Training</h3>
+                        <p class="step-description">
+                            Once selected, you'll receive a comprehensive onboarding session to help you implement the XYDO ATHLETIC PROGRAMS system with your team. We'll provide guidance on how to integrate the platform into your existing training schedule.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Regular Check-ins</h3>
+                        <p class="step-description">
+                            Throughout the case study period (typically 8-12 weeks), we'll conduct regular check-ins to gather feedback, answer questions, and ensure you're getting the most out of the platform. These brief sessions help us understand your experience.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Data Collection</h3>
+                        <p class="step-description">
+                            We'll collect data on your team's usage, progress, and results throughout the program. This includes player engagement metrics, skill development progress, and feedback from coaches and players.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Case Study Publication</h3>
+                        <p class="step-description">
+                            At the end of the program, we'll compile the results into a case study that highlights your team's experience and outcomes. You'll have the opportunity to review and approve the case study before publication.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonials Section -->
+            <h2 class="section-title">Success Stories</h2>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <p class="testimonial-content">
+                            The XYDO platform transformed our team's approach to skill development. Our players are more engaged in practice, and we've seen measurable improvements in their fundamentals. The structured program made it easy to implement consistent training.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/82.jpg" alt="Jorge Perez">
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Jorge Perez</h4>
+                                <p class="author-role">Head Coach, Jackpot Jaguars</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <p class="testimonial-content">
+                            As a coach with limited resources, XYDO gave our team access to professional-level training content we couldn't have created ourselves. The mental training aspects were particularly valuable for our players' development.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Sarah Johnson</h4>
+                                <p class="author-role">Assistant Coach, Eagles Basketball</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <p class="testimonial-content">
+                            The progress tracking features helped me identify which skills needed more attention with my players. We saw a 30% improvement in shooting accuracy and significantly better ball handling across the team in just 8 weeks.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Johnson">
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Michael Johnson</h4>
+                                <p class="author-role">Development Coach, Wildcats</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Application Form -->
+            <h2 class="section-title">Apply for the Case Study Program</h2>
+            
+            <div class="application-form">
+                <h3 class="form-title">Case Study Application</h3>
+                
+                <form>
+                    <div class="form-group">
+                        <label for="teamName" class="form-label">Team Name</label>
+                        <input type="text" class="form-control" id="teamName" placeholder="Enter your team name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coachName" class="form-label">Head Coach Name</label>
+                        <input type="text" class="form-control" id="coachName" placeholder="Enter head coach's name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="teamSize" class="form-label">Team Size</label>
+                        <input type="number" class="form-control" id="teamSize" placeholder="Number of players">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ageGroup" class="form-label">Age Group</label>
+                        <select class="form-control" id="ageGroup">
+                            <option value="" selected disabled>Select age group</option>
+                            <option value="elementary">Elementary School (8-11)</option>
+                            <option value="middle">Middle School (12-14)</option>
+                            <option value="highSchool">High School (15-18)</option>
+                            <option value="college">College (19-22)</option>
+                            <option value="adult">Adult Recreation (23+)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="skillLevel" class="form-label">Skill Level</label>
+                        <select class="form-control" id="skillLevel">
+                            <option value="" selected disabled>Select skill level</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                            <option value="elite">Elite/Competitive</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goals" class="form-label">Team Goals</label>
+                        <textarea class="form-control" id="goals" rows="4" placeholder="Describe your team's goals for the upcoming season"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="challenges" class="form-label">Current Challenges</label>
+                        <textarea class="form-control" id="challenges" rows="4" placeholder="What challenges is your team currently facing?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whyParticipate" class="form-label">Why do you want to participate?</label>
+                        <textarea class="form-control" id="whyParticipate" rows="4" placeholder="Tell us why you'd like to be part of the case study program"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">How did you hear about us?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="source1">
+                            <label class="form-check-label" for="source1">Social Media</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="source2">
+                            <label class="form-check-label" for="source2">Search Engine</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="source3">
+                            <label class="form-check-label" for="source3">Referral from Coach/Player</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="source4">
+                            <label class="form-check-label" for="source4">Basketball Event/Camp</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="source5">
+                            <label class="form-check-label" for="source5">Other</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="termsCheck">
+                            <label class="form-check-label" for="termsCheck">
+                                I agree to participate in the case study program and share our team's experience and results with XYDO ATHLETIC PROGRAMS.
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary btn-lg">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- FAQ Section -->
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        <h3>How long does the case study program last?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The typical case study program lasts 8-12 weeks, which gives us enough time to collect meaningful data on your team's progress. However, we can be flexible based on your season schedule and specific needs.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What kind of teams are you looking for?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We're looking for a diverse range of teams across different age groups, skill levels, and geographic locations. The most important factor is a commitment to player development and willingness to provide regular feedback on the platform.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What are the expectations for participating teams?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Participating teams are expected to implement the XYDO program with their players, provide regular feedback through brief surveys and check-ins, and share their results at the end of the program. We also ask that coaches track player progress using the platform's tools.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How will our team's information be used?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We'll use your team's experience and results to create a case study that demonstrates the effectiveness of the XYDO platform. This may include before/after statistics, testimonials, and descriptions of how you implemented the program. You'll have the opportunity to review and approve all content before publication.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What happens after the case study period ends?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>After the case study period, participating teams will receive a special discount to continue using the platform if they choose to do so. We'll also provide a comprehensive report of your team's progress and recommendations for continued development.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How many teams will be selected for the program?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We select a limited number of teams for each case study cohort to ensure we can provide adequate support and attention to each participating team. Typically, we accept 5-10 teams per cohort, with new cohorts starting quarterly.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Section -->
+            <div class="cta-container">
+                <h2 class="cta-title">Ready to Transform Your Team?</h2>
+                <p class="cta-description">
+                    Join our Case Study Program today and get free access to the complete XYDO ATHLETIC PROGRAMS platform. Help us demonstrate the impact of our basketball development system while accelerating your team's growth.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary btn-lg">Apply Now</button>
+                    <button class="btn btn-secondary btn-lg">Schedule a Demo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle
+        document.getElementById('sidebar-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const toggleIcon = document.getElementById('toggle-icon');
+            
+            sidebar.classList.toggle('sidebar-collapsed');
+            mainContent.classList.toggle('main-content-expanded');
+            
+            if (sidebar.classList.contains('sidebar-collapsed')) {
+                toggleIcon.classList.remove('fa-chevron-left');
+                toggleIcon.classList.add('fa-chevron-right');
+            } else {
+                toggleIcon.classList.remove('fa-chevron-right');
+                toggleIcon.classList.add('fa-chevron-left');
+            }
+        });
+        
+        // FAQ toggle
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

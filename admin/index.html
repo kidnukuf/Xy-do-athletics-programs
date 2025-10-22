@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - XYDO ATHLETIC PROGRAMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        :root {
+            --primary-blue: #0047AB;
+            --secondary-blue: #1E3A8A;
+            --primary-gold: #FFD700;
+            --secondary-gold: #FFC000;
+            --dark-bg: #121212;
+            --card-bg: rgba(18, 18, 18, 0.95);
+            --light-text: #F5F5F5;
+            --gray-text: #AAAAAA;
+            --gold-gradient: linear-gradient(90deg, var(--primary-gold), var(--secondary-gold));
+            --blue-gradient: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .admin-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
+        }
+        
+        .admin-header h1 {
+            margin: 0;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            color: var(--light-text);
+        }
+        
+        .admin-header p {
+            margin: 0;
+            color: var(--light-text);
+            max-width: 800px;
+        }
+        
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-gold);
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gold-gradient);
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray-text);
+            margin: 0;
+        }
+        
+        .stat-change {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .stat-change.positive {
+            color: #4CAF50;
+        }
+        
+        .stat-change.negative {
+            color: #F44336;
+        }
+        
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .admin-section {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .admin-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
+        }
+        
+        .admin-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .admin-section-title {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--light-text);
+        }
+        
+        .admin-section-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .user-table th,
+        .user-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .user-table th {
+            color: var(--gray-text);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .user-table td {
+            color: var(--light-text);
+        }
+        
+        .user-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .user-table tr:hover td {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .user-name {
+            font-weight: 500;
+            color: var(--light-text);
+        }
+        
+        .user-email {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+        
+        .user-role {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .user-role.admin {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: #F44336;
+        }
+        
+        .user-role.coach {
+            background-color: rgba(33, 150, 243, 0.1);
+            color: #2196F3;
+        }
+        
+        .user-role.player {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+        }
+        
+        .user-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .user-status.active {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+        }
+        
+        .user-status.inactive {
+            background-color: rgba(158, 158, 158, 0.1);
+            color: #9E9E9E;
+        }
+        
+        .user-status.pending {
+            background-color: rgba(255, 152, 0, 0.1);
+            color: #FF9800;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .user-action {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .user-action:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--primary-gold);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .pagination-item {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--light-text);
+        }
+        
+        .pagination-item:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--primary-gold);
+        }
+        
+        .pagination-item.active {
+            background-color: var(--primary-gold);
+            color: var(--dark-bg);
+        }
+        
+        .activity-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .activity-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .activity-item:first-child {
+            padding-top: 0;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-gold);
+            flex-shrink: 0;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-text {
+            margin: 0;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+            line-height: 1.5;
+        }
+        
+        .activity-text a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .activity-text a:hover {
+            text-decoration: underline;
+        }
+        
+        .activity-time {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .quick-action {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-action:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .quick-action-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+        
+        .quick-action-title {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--light-text);
+        }
+        
+        .feedback-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .feedback-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .feedback-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .feedback-user {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .feedback-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .feedback-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .feedback-user-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .feedback-user-name {
+            font-weight: 500;
+            color: var(--light-text);
+        }
+        
+        .feedback-user-role {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+        
+        .feedback-rating {
+            display: flex;
+            gap: 0.2rem;
+        }
+        
+        .star {
+            color: var(--primary-gold);
+        }
+        
+        .feedback-content {
+            margin: 0;
+            color: var(--light-text);
+            line-height: 1.5;
+        }
+        
+        .feedback-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+        
+        .feedback-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .feedback-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .feedback-action {
+            color: var(--gray-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .feedback-action:hover {
+            color: var(--primary-gold);
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (max-width: 992px) {
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .admin-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="../images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+                <h3>XYDO ADMIN</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html" class="active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="teams.html">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Teams</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="content.html">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Content</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="videos.html">
+                        <i class="fas fa-video"></i>
+                        <span>Videos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="feedback.html">
+                        <i class="fas fa-comment-alt"></i>
+                        <span>Feedback</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="analytics.html">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="../login.html" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-chevron-left" id="toggle-icon"></i>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Admin Dashboard</h1>
+                    <p>Welcome back, Admin! Here's what's happening with your platform.</p>
+                </div>
+                
+                <div class="page-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        <span>Export Report</span>
+                    </button>
+                    
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        <span>New Team</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Admin Header -->
+            <div class="admin-header">
+                <h1>XYDO ATHLETIC PROGRAMS</h1>
+                <p>Manage your basketball development platform, monitor user activity, and track program performance from this central dashboard.</p>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2 class="stat-value">248</h2>
+                    <p class="stat-label">Total Users</p>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>12% this month</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h2 class="stat-value">14</h2>
+                    <p class="stat-label">Active Teams</p>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>3 new this month</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h2 class="stat-value">1,245</h2>
+                    <p class="stat-label">Video Views</p>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>18% this week</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h2 class="stat-value">4.8</h2>
+                    <p class="stat-label">Average Rating</p>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>0.2 this month</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Admin Grid -->
+            <div class="admin-grid">
+                <!-- Left Column -->
+                <div class="admin-left">
+                    <!-- Recent Users -->
+                    <div class="admin-section">
+                        <div class="admin-section-header">
+                            <h2 class="admin-section-title">Recent Users</h2>
+                            
+                            <div class="admin-section-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-filter"></i>
+                                    <span>Filter</span>
+                                </button>
+                                
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Add User</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <table class="user-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Role</th>
+                                    <th>Team</th>
+                                    <th>Status</th>
+                                    <th>Joined</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar">
+                                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Johnson">
+                                            </div>
+                                            <div class="user-details">
+                                                <div class="user-name">Michael Johnson</div>
+                                                <div class="user-email">michael.j@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="user-role player">Player</div>
+                                    </td>
+                                    <td>Wildcats</td>
+                                    <td>
+                                        <div class="user-status active">Active</div>
+                                    </td>
+                                    <td>Nov 15, 2023</td>
+                                    <td>
+                                        <div class="user-actions">
+                                            <div class="user-action">
+                                                <i class="fas fa-eye"></i>
+                                            </div>
+                                            <div class="user-action">
+                                                <i class="fas fa-edit"></i>
+                                            </div>
+                                            <div class="user-action">
+                                                <i class="fas fa-trash"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar">
+                                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                                            </div>
+                                            <div class="user-details">
+                                                <div class="user-name">Sarah Johnson</div>
+                                                <div class="user-email">sarah.j@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="user-role coach">Coach</div>
+                                    </td>
+                                    <td>Eagles</td>
+                                    <td>
+                                        <div class="user-status active">Active</div>
+                                    </td>
+                                    <td>Nov 12, 2023</td>
+                                    <td>
+                                        <div class="user-actions">
+                                            <div class="user-action">
+                                                <i class="fas fa-eye"></i>
+                                            </div>
+                                            <div class="user-action">
+                                                <i class="fas fa-edit"></i>
+                                            </div>
+                                            <div class="user-action">
+                                                <i class="fas fa-trash"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar">
+                                                <img src="https://randomuser.me/api/portraits/men/82.jpg" alt="Jorge Perez">
+                                            </div>
+                                            <div class="user-details">
+                                                <div class="user-name">Jorge Perez</div>
+                                                <div class="user-email">jorge.p@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="user-role admin">Admin</div>
+                                    </td>
+                                    <td>Jaguars</td>
+                                    <td>
+                                        <div class="user-status active">Active</div>
+                                    </td>
+                                    <td>Nov 10, 2023</td>
+                                    <td>
+                                        <div class="user-actions">
+                                            <div class="user-action">
+                                                <i class="fas fa-eye"></i>
+                                            </div>
+                                            <div class="user-action">
+                                                <i class="fas fa-edit"></i>
+                                            </div>
+                                            <div class="user-action">
+                                                <i class="fas fa-trash"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar">
+                                                <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Emily Davis">
+                                            </div>
+                                            <div class="user-details">
+                                                <div class="user-name">Emily Davis</div>
+                                                <div class="user-email">emily.d@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="user-role player">Player</div>
+                                    </td>
+                                    <td>Tigers</td>
+                                    <td>
+                                        <div class="user-status pending">Pending</div>
+                                    </td>
+                                    <td>Nov 8, 2023</td>
+                                    <td>
+                                        <div class="user-actions">
+                                            <div class="user-action">
+                                                <i class="fas fa-eye"></i>
+                                            </div>
+                                            <div class="user-action">
+                                                <i class="fas fa-edit"></i>
+                                            </div>
+                                            <div class="user-action">
+                                                <i class="fas fa-trash"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar">
+                                                <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Thomas Davis">
+                                            </div>
+                                            <div class="user-details">
+                                                <div class="user-name">Thomas Davis</div>
+                                                <div class="user-email">thomas.d@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="user-role player">Player</div>
+                                    </td>
+                                    <td>Lions</td>
+                                    <td>
+                                        <div class="user-status inactive">Inactive</div>
+                                    </td>
+                                    <td>Nov 5, 2023</td>
+                                    <td>
+                                        <div class="user-actions">
+                                            <div class="user-action">
+                                                <i class="fas fa-eye"></i>
+                                            </div>
+                                            <div class="user-action">
+                                                <i class="fas fa-edit"></i>
+                                            </div>
+                                            <div class="user-action">
+                                                <i class="fas fa-trash"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="pagination">
+                            <div class="pagination-item active">1</div>
+                            <div class="pagination-item">2</div>
+                            <div class="pagination-item">3</div>
+                            <div class="pagination-item">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                            <div class="pagination-item">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- User Engagement Chart -->
+                    <div class="admin-section">
+                        <div class="admin-section-header">
+                            <h2 class="admin-section-title">User Engagement</h2>
+                            
+                            <div class="admin-section-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Last 30 Days</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <!-- Chart would be rendered here using a library like Chart.js -->
+                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray-text);">
+                                <p>Chart visualization would be rendered here</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-around; text-align: center;">
+                            <div>
+                                <h3 style="margin: 0; color: var(--primary-gold);">78%</h3>
+                                <p style="margin: 0; color: var(--gray-text); font-size: 0.9rem;">Completion Rate</p>
+                            </div>
+                            
+                            <div>
+                                <h3 style="margin: 0; color: var(--primary-gold);">24 min</h3>
+                                <p style="margin: 0; color: var(--gray-text); font-size: 0.9rem;">Avg. Session</p>
+                            </div>
+                            
+                            <div>
+                                <h3 style="margin: 0; color: var(--primary-gold);">3.8</h3>
+                                <p style="margin: 0; color: var(--gray-text); font-size: 0.9rem;">Sessions/Week</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="admin-right">
+                    <!-- Quick Actions -->
+                    <div class="admin-section">
+                        <div class="admin-section-header">
+                            <h2 class="admin-section-title">Quick Actions</h2>
+                        </div>
+                        
+                        <div class="quick-actions">
+                            <div class="quick-action">
+                                <div class="quick-action-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <h3 class="quick-action-title">Add User</h3>
+                            </div>
+                            
+                            <div class="quick-action">
+                                <div class="quick-action-icon">
+                                    <i class="fas fa-users-cog"></i>
+                                </div>
+                                <h3 class="quick-action-title">Create Team</h3>
+                            </div>
+                            
+                            <div class="quick-action">
+                                <div class="quick-action-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <h3 class="quick-action-title">Edit Content</h3>
+                            </div>
+                            
+                            <div class="quick-action">
+                                <div class="quick-action-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <h3 class="quick-action-title">Add Video</h3>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity -->
+                    <div class="admin-section">
+                        <div class="admin-section-header">
+                            <h2 class="admin-section-title">Recent Activity</h2>
+                        </div>
+                        
+                        <ul class="activity-list">
+                            <li class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                
+                                <div class="activity-content">
+                                    <p class="activity-text">
+                                        <strong>Michael Johnson</strong> joined the <strong>Wildcats</strong> team
+                                    </p>
+                                    <div class="activity-time">
+                                        <i class="fas fa-clock"></i>
+                                        <span>2 hours ago</span>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                
+                                <div class="activity-content">
+                                    <p class="activity-text">
+                                        <strong>Sarah Johnson</strong> rated <a href="#">Advanced Dribbling Techniques</a> with 5 stars
+                                    </p>
+                                    <div class="activity-time">
+                                        <i class="fas fa-clock"></i>
+                                        <span>4 hours ago</span>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-comment-alt"></i>
+                                </div>
+                                
+                                <div class="activity-content">
+                                    <p class="activity-text">
+                                        <strong>Jorge Perez</strong> left feedback on <a href="#">Week 2 Content</a>
+                                    </p>
+                                    <div class="activity-time">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Yesterday</span>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                
+                                <div class="activity-content">
+                                    <p class="activity-text">
+                                        <strong>Emily Davis</strong> earned the <strong>Ball Handling Master</strong> achievement
+                                    </p>
+                                    <div class="activity-time">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Yesterday</span>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                
+                                <div class="activity-content">
+                                    <p class="activity-text">
+                                        <strong>Thomas Davis</strong> watched <a href="#">Defensive Stance Fundamentals</a>
+                                    </p>
+                                    <div class="activity-time">
+                                        <i class="fas fa-clock"></i>
+                                        <span>2 days ago</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Recent Feedback -->
+                    <div class="admin-section">
+                        <div class="admin-section-header">
+                            <h2 class="admin-section-title">Recent Feedback</h2>
+                        </div>
+                        
+                        <div class="feedback-item">
+                            <div class="feedback-header">
+                                <div class="feedback-user">
+                                    <div class="feedback-avatar">
+                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Johnson">
+                                    </div>
+                                    
+                                    <div class="feedback-user-info">
+                                        <div class="feedback-user-name">Michael Johnson</div>
+                                        <div class="feedback-user-role">Player</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="feedback-rating">
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                </div>
+                            </div>
+                            
+                            <p class="feedback-content">
+                                The dribbling drills in Week 1 were incredibly helpful. I've already noticed improvement in my ball handling skills after just a few sessions.
+                            </p>
+                            
+                            <div class="feedback-meta">
+                                <div class="feedback-date">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Nov 15, 2023</span>
+                                </div>
+                                
+                                <div class="feedback-actions">
+                                    <div class="feedback-action">
+                                        <i class="fas fa-reply"></i>
+                                        <span>Reply</span>
+                                    </div>
+                                    
+                                    <div class="feedback-action">
+                                        <i class="fas fa-thumbtack"></i>
+                                        <span>Pin</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-item">
+                            <div class="feedback-header">
+                                <div class="feedback-user">
+                                    <div class="feedback-avatar">
+                                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                                    </div>
+                                    
+                                    <div class="feedback-user-info">
+                                        <div class="feedback-user-name">Sarah Johnson</div>
+                                        <div class="feedback-user-role">Coach</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="feedback-rating">
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="far fa-star star"></i>
+                                </div>
+                            </div>
+                            
+                            <p class="feedback-content">
+                                The coaching resources are excellent, but I would love to see more content on team building exercises and communication drills for young players.
+                            </p>
+                            
+                            <div class="feedback-meta">
+                                <div class="feedback-date">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Nov 12, 2023</span>
+                                </div>
+                                
+                                <div class="feedback-actions">
+                                    <div class="feedback-action">
+                                        <i class="fas fa-reply"></i>
+                                        <span>Reply</span>
+                                    </div>
+                                    
+                                    <div class="feedback-action">
+                                        <i class="fas fa-thumbtack"></i>
+                                        <span>Pin</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle
+        document.getElementById('sidebar-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const toggleIcon = document.getElementById('toggle-icon');
+            
+            sidebar.classList.toggle('sidebar-collapsed');
+            mainContent.classList.toggle('main-content-expanded');
+            
+            if (sidebar.classList.contains('sidebar-collapsed')) {
+                toggleIcon.classList.remove('fa-chevron-left');
+                toggleIcon.classList.add('fa-chevron-right');
+            } else {
+                toggleIcon.classList.remove('fa-chevron-right');
+                toggleIcon.classList.add('fa-chevron-left');
+            }
+        });
+    </script>
+</body>
+</html>

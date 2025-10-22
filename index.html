@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XYDO ATHLETIC PROGRAMS - Sports Development Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="login.html" class="btn btn-secondary">Login</a></li>
+                </ul>
+            </nav>
+            <div class="logo">
+                <img src="images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-tagline">
+            <h2>Elevate Your Athletic Program</h2>
+        </div>
+    </section>
+
+    <!-- Path Selection -->
+    <section id="path-selection" class="container">
+        <div class="section-title">
+            <h2>Choose Your Path</h2>
+        </div>
+        
+        <div class="path-selection">
+            <!-- Player Path -->
+            <div class="path-option slide-up" onclick="window.location.href='register.html?role=player'">
+                <div class="path-icon">
+                    <img src="images/athlete_icon.png" alt="Athlete Icon">
+                </div>
+                <h3 class="path-title">Athlete Development</h3>
+                <p class="path-description">Access training videos, practice plans, and mental training resources designed specifically for athletes.</p>
+                <div class="path-features">
+                    <span><i class="fas fa-check-circle"></i> Skill Development</span>
+                    <span><i class="fas fa-check-circle"></i> Mental Training</span>
+                    <span><i class="fas fa-check-circle"></i> Progress Tracking</span>
+                </div>
+                <a href="register.html?role=player" class="btn btn-primary">Athlete Sign Up</a>
+            </div>
+            
+            <!-- Coach Path -->
+            <div class="path-option slide-up" onclick="window.location.href='register.html?role=coach'">
+                <div class="path-icon">
+                    <img src="images/coach_icon.png" alt="Coach Icon">
+                </div>
+                <h3 class="path-title">Coach Development</h3>
+                <p class="path-description">Access resources for leadership, communication, mental fortitude, and athlete development.</p>
+                <div class="path-features">
+                    <span><i class="fas fa-check-circle"></i> Leadership Training</span>
+                    <span><i class="fas fa-check-circle"></i> Team Management</span>
+                    <span><i class="fas fa-check-circle"></i> Athlete Progress</span>
+                </div>
+                <a href="register.html?role=coach" class="btn btn-primary">Coach Sign Up</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="container">
+        <div class="section-title">
+            <h2>Platform Features</h2>
+        </div>
+        
+        <div class="features-grid">
+            <!-- Feature 1 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Achievement System</h3>
+                <p>Earn badges and rewards as you complete training modules and reach milestones.</p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Team Community</h3>
+                <p>Connect with teammates, share progress, and encourage each other's development.</p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Progress Tracking</h3>
+                <p>Monitor development with detailed analytics and performance metrics.</p>
+            </div>
+            
+            <!-- Feature 4 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Mental Training</h3>
+                <p>Develop focus, confidence, and resilience through specialized exercises.</p>
+            </div>
+            
+            <!-- Feature 5 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>Video Library</h3>
+                <p>Access a comprehensive collection of training videos and tutorials.</p>
+            </div>
+            
+            <!-- Feature 6 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Structured Programs</h3>
+                <p>Follow weekly programs designed by experts for consistent improvement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="case-studies" class="container">
+        <div class="section-title">
+            <h2>Success Stories</h2>
+        </div>
+        
+        <div class="case-studies-slider">
+            <!-- Case Study 1 -->
+            <div class="case-study">
+                <div class="case-study-image">
+                    <img src="images/case-study-1.jpg" alt="Westlake High School Basketball Team">
+                </div>
+                <div class="case-study-content">
+                    <h3>Westlake High School Basketball</h3>
+                    <p class="case-study-stats">
+                        <span><i class="fas fa-arrow-up"></i> 32% Skill Improvement</span>
+                        <span><i class="fas fa-arrow-up"></i> 28% Win Rate Increase</span>
+                    </p>
+                    <p>"XYDO has transformed our program. The structured approach to both physical and mental training has given our players a competitive edge."</p>
+                    <p class="case-study-author">- Coach Williams, Head Coach</p>
+                    <a href="#" class="btn btn-secondary">Read Full Story</a>
+                </div>
+            </div>
+            
+            <!-- More case studies would be added here with slider navigation -->
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Users Say</h2>
+            </div>
+            
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="images/testimonial-1.jpg" alt="Sarah J.">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The mental training exercises have completely changed my approach to the game. I'm more focused and confident than ever."</p>
+                        <p class="testimonial-author">Sarah J., High School Athlete</p>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="images/testimonial-2.jpg" alt="Coach Thompson">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"As a coach, the ability to track my players' progress and assign specific training has been invaluable. It's like having an assistant coach."</p>
+                        <p class="testimonial-author">Coach Thompson, Youth Basketball</p>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="images/testimonial-3.jpg" alt="Mike R.">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>"The community features keep our team connected even during the off-season. We're able to encourage each other and stay motivated."</p>
+                        <p class="testimonial-author">Mike R., College Athlete</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview Section -->
+    <section id="blog" class="container">
+        <div class="section-title">
+            <h2>Latest from Our Blog</h2>
+        </div>
+        
+        <div class="blog-grid">
+            <!-- Blog Post 1 -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="images/blog-1.jpg" alt="Off-Season Training Tips">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Training</div>
+                    <h3>5 Essential Off-Season Training Tips</h3>
+                    <p>Make the most of your off-season with these proven training strategies that will keep you in peak condition.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> Oct 2, 2025</span>
+                        <span><i class="far fa-user"></i> Coach Martinez</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Read More</a>
+                </div>
+            </div>
+            
+            <!-- Blog Post 2 -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="images/blog-2.jpg" alt="Mental Preparation">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Mental Training</div>
+                    <h3>Mental Preparation Techniques for Game Day</h3>
+                    <p>Learn how top athletes prepare mentally for big games and how you can apply these techniques.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> Sep 28, 2025</span>
+                        <span><i class="far fa-user"></i> Dr. Williams</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Read More</a>
+                </div>
+            </div>
+            
+            <!-- Blog Post 3 -->
+            <div class="blog-card featured-post">
+                <div class="blog-image">
+                    <img src="images/blog-3.jpg" alt="User Submitted Content">
+                    <div class="featured-badge">Featured Submission</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">User Story</div>
+                    <h3>How Our Team Overcame a Losing Streak</h3>
+                    <p>A powerful story submitted by Coach Johnson about how his team used adversity as motivation to turn their season around.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> Sep 25, 2025</span>
+                        <span><i class="far fa-user"></i> Coach Johnson</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-cta">
+            <a href="blog.html" class="btn btn-primary">View All Posts</a>
+            <a href="submit-blog.html" class="btn btn-secondary">Submit Your Story</a>
+        </div>
+    </section>
+
+    <!-- Call to Action - Free Trial -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Join Our Case Study Program</h2>
+                <p>We're selecting teams for our free case study program. Get full access to XYDO ATHLETIC PROGRAMS and help shape the future of athletic development.</p>
+                <div class="cta-buttons">
+                    <a href="case-study-application.html" class="btn btn-primary">Apply Now</a>
+                    <a href="#contact" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Program -->
+    <section class="referral-program container">
+        <div class="section-title">
+            <h2>Refer and Earn</h2>
+        </div>
+        
+        <div class="referral-content">
+            <div class="referral-info">
+                <h3>Share XYDO with Other Teams</h3>
+                <p>Know other coaches or teams that could benefit from XYDO? Refer them and earn rewards:</p>
+                <ul class="referral-benefits">
+                    <li><i class="fas fa-check-circle"></i> One month free for each successful referral</li>
+                    <li><i class="fas fa-check-circle"></i> Special ambassador status after 3 referrals</li>
+                    <li><i class="fas fa-check-circle"></i> Exclusive content and early feature access</li>
+                </ul>
+                <a href="referral-program.html" class="btn btn-primary">Get Referral Link</a>
+            </div>
+            <div class="referral-image">
+                <img src="images/referral-graphic.png" alt="Referral Program">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        
+        <div class="content-section">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Have questions about XYDO ATHLETIC PROGRAMS? Our team is here to help.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:info@xydoathletic.com">info@xydoathletic.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>(555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>123 Athletic Drive<br>
+                                Sports City, SC 12345</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h3>Subscribe to Our Newsletter</h3>
+                <p>Get the latest training tips, program updates, and exclusive content delivered to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="images/xydo_logo.png" alt="XYDO ATHLETIC PROGRAMS Logo">
+                    </div>
+                    <p>XYDO ATHLETIC PROGRAMS is dedicated to developing athletes and coaches through comprehensive training programs that focus on both physical skills and mental abilities.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Athletic Drive, Sports City, SC 12345</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@xydoathletic.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 XYDO ATHLETIC PROGRAMS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
