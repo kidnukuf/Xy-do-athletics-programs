@@ -1,5 +1,5 @@
 // XY-DO Athletic Programs - API Configuration
-const API_BASE_URL = 'https://5001-izoc0ue7wiktx4rz0hvij-bef9371f.manusvm.computer/api';
+const API_BASE_URL = 'https://xy-do-backend-production-88c9.up.railway.app/api';
 
 // API Helper Functions
 const api = {
