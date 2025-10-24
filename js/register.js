@@ -34,6 +34,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const confirmPassword = document.getElementById('confirmPassword').value;
             const role = document.getElementById('role') ? document.getElementById('role').value : 'player';
             const team = document.getElementById('team') ? document.getElementById('team').value : '';
+            const school = document.getElementById('school') ? document.getElementById('school').value : '';
+            const teamCode = document.getElementById('team-code') ? document.getElementById('team-code').value : '';
+            
+            // Get position or coach role based on selected role
+            let position = '';
+            let coachRole = '';
+            
+            if (role === 'player') {
+                position = document.getElementById('player-position') ? document.getElementById('player-position').value : '';
+            } else if (role === 'coach') {
+                coachRole = document.getElementById('coach-role-select') ? document.getElementById('coach-role-select').value : '';
+            }
 
             // Validate
             if (!name || !email || !password) {
@@ -63,12 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     name,
                     email,
                     password,
-                    role
+                    role,
+                    team,
+                    school,
+                    teamCode,
+                    position,
+                    coachRole
                 };
-
-                if (team) {
-                    userData.team = team;
-                }
 
                 // Call API
                 const response = await api.register(userData);

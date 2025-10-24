@@ -75,7 +75,7 @@ const api = {
         
         if (data.token) {
             this.setToken(data.token);
-            this.setUser(data.data);
+            this.setUser(data.user);
         }
         
         return data;
@@ -89,7 +89,7 @@ const api = {
         
         if (data.token) {
             this.setToken(data.token);
-            this.setUser(data.data);
+            this.setUser(data.user);
         }
         
         return data;
@@ -200,38 +200,7 @@ const api = {
 
     async getFeedback() {
         return await this.request('/feedback');
-    }
-};
-
-// Check if user is authenticated
-function isAuthenticated() {
-    return !!api.getToken();
-}
-
-// Redirect to login if not authenticated
-function requireAuth() {
-    if (!isAuthenticated()) {
-        window.location.href = 'login.html';
-        return false;
-    }
-    return true;
-}
-
-// Logout function
-async function handleLogout() {
-    try {
-        await api.logout();
-        window.location.href = 'index.html';
-    } catch (error) {
-        console.error('Logout error:', error);
-        // Force logout even if API call fails
-        api.removeToken();
-        api.removeUser();
-        window.location.href = 'index.html';
-    }
-}
-
-
+    },
 
     // Video endpoints
     async getVideos(filters = {}) {
@@ -312,4 +281,32 @@ async function handleLogout() {
         });
     }
 };
+
+// Check if user is authenticated
+function isAuthenticated() {
+    return !!api.getToken();
+}
+
+// Redirect to login if not authenticated
+function requireAuth() {
+    if (!isAuthenticated()) {
+        window.location.href = 'login.html';
+        return false;
+    }
+    return true;
+}
+
+// Logout function
+async function handleLogout() {
+    try {
+        await api.logout();
+        window.location.href = 'index.html';
+    } catch (error) {
+        console.error('Logout error:', error);
+        // Force logout even if API call fails
+        api.removeToken();
+        api.removeUser();
+        window.location.href = 'index.html';
+    }
+}
 
