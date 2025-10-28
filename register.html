@@ -569,78 +569,7 @@
             }
         });
         
-        // Form submission handler
-        document.getElementById('register-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Check if passwords match
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            
-            if (password !== confirmPassword) {
-                // Show error notification
-                const notification = document.createElement('div');
-                notification.className = 'notification error';
-                notification.innerHTML = `
-                    <div class="notification-content">
-                        <span>Passwords do not match. Please try again.</span>
-                        <button class="notification-close">&times;</button>
-                    </div>
-                `;
-                document.body.appendChild(notification);
-                
-                // Add show class after a small delay to trigger animation
-                setTimeout(() => {
-                    notification.classList.add('show');
-                }, 10);
-                
-                // Set up close button
-                notification.querySelector('.notification-close').addEventListener('click', () => {
-                    notification.classList.remove('show');
-                    setTimeout(() => {
-                        notification.remove();
-                    }, 300);
-                });
-                
-                // Auto-hide after 5 seconds
-                setTimeout(() => {
-                    if (document.body.contains(notification)) {
-                        notification.classList.remove('show');
-                        setTimeout(() => {
-                            if (document.body.contains(notification)) {
-                                notification.remove();
-                            }
-                        }, 300);
-                    }
-                }, 5000);
-                
-                return;
-            }
-            
-            // Simulate registration success
-            // In a real implementation, this would send the form data to a server
-            
-            // Show success notification
-            const notification = document.createElement('div');
-            notification.className = 'notification success';
-            notification.innerHTML = `
-                <div class="notification-content">
-                    <span>Registration successful! Please check your email to verify your account.</span>
-                    <button class="notification-close">&times;</button>
-                </div>
-            `;
-            document.body.appendChild(notification);
-            
-            // Add show class after a small delay to trigger animation
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 10);
-            
-            // Redirect to login page after a short delay
-            setTimeout(() => {
-                window.location.href = 'login.html';
-            }, 2000);
-        });
+        // Form submission is handled by register.js
     </script>
 
     <!-- API Integration Scripts -->
