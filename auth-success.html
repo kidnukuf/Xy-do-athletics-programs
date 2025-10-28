@@ -62,15 +62,9 @@
                 localStorage.setItem('token', token);
                 localStorage.setItem('user', JSON.stringify(user));
                 
-                // Redirect based on user role
+                // Redirect to dashboard
                 setTimeout(() => {
-                    if (user.role === 'admin') {
-                        window.location.href = '/admin/index.html';
-                    } else if (user.role === 'coach') {
-                        window.location.href = '/coach-dashboard.html';
-                    } else {
-                        window.location.href = '/player-dashboard.html';
-                    }
+                    window.location.href = '/dashboard.html';
                 }, 2000);
             } catch (error) {
                 console.error('Error parsing user data:', error);
