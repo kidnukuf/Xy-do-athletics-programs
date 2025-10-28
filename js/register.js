@@ -86,13 +86,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Call API
                 const response = await api.register(userData);
 
-                // Show success
-                showSuccess('Account created successfully! Redirecting to dashboard...');
+                // Check if email verification is required
+                if (response.requiresVerification) {
+                    // Show success message
+                    showSuccess('Account created! Please check your email to verify your account.');
+                    
+                    // Redirect to verification pending page
+                    setTimeout(() => {
+                        window.location.href = `verify-pending.html?email=${encodeURIComponent(email)}`;
+                    }, 1500);
+                } else {
+                    // Show success
+                    showSuccess('Account created successfully! Redirecting to dashboard...');
 
-                // Redirect to dashboard
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 1500);
+                    // Redirect to dashboard
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                }
 
             } catch (error) {
                 showError(error.message || 'Registration failed. Please try again.');

@@ -47,7 +47,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 1000);
 
             } catch (error) {
-                showError(error.message || 'Login failed. Please check your credentials.');
+                // Check if error is due to unverified email
+                if (error.requiresVerification) {
+                    showError('Please verify your email before logging in. Check your inbox for the verification link.');
+                    
+                    // Add a button to resend verification email
+                    if (errorDiv) {
+                        const resendBtn = document.createElement('button');
+                        resendBtn.textContent = 'Resend Verification Email';
+                        resendBtn.style.marginTop = '10px';
+                        resendBtn.style.padding = '8px 16px';
+                        resendBtn.style.backgroundColor = '#667eea';
+                        resendBtn.style.color = 'white';
+                        resendBtn.style.border = 'none';
+                        resendBtn.style.borderRadius = '5px';
+                        resendBtn.style.cursor = 'pointer';
+                        resendBtn.onclick = () => {
+                            window.location.href = `verify-pending.html?email=${encodeURIComponent(email)}`;
+                        };
+                        errorDiv.appendChild(document.createElement('br'));
+                        errorDiv.appendChild(resendBtn);
+                    }
+                } else {
+                    showError(error.message || 'Login failed. Please check your credentials.');
+                }
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
             }

@@ -56,7 +56,11 @@ const api = {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error || 'Something went wrong');
+                // Create error object with all response data
+                const error = new Error(data.error || 'Something went wrong');
+                error.requiresVerification = data.requiresVerification;
+                error.email = data.email;
+                throw error;
             }
 
             return data;

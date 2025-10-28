@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Email - XY-DO Athletic Programs</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .verification-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .verification-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .verification-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+
+        .verification-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+
+        .verification-message {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .email-display {
+            background: #f3f4f6;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            padding: 14px 32px;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .resend-info {
+            font-size: 14px;
+            color: #9ca3af;
+            margin-top: 20px;
+        }
+
+        .alert {
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <div class="verification-card">
+            <div class="verification-icon">
+                📧
+            </div>
+            <h1 class="verification-title">Check Your Email</h1>
+            <p class="verification-message">
+                We've sent a verification link to:
+            </p>
+            <div class="email-display" id="userEmail">
+                Loading...
+            </div>
+
+            <div id="alertContainer"></div>
+
+            <p class="verification-message">
+                Click the link in the email to verify your account and get started with XY-DO Athletic Programs.
+            </p>
+
+            <button id="resendBtn" class="btn-primary">
+                Resend Verification Email
+            </button>
+
+            <a href="login.html" class="btn-secondary">
+                Back to Login
+            </a>
+
+            <p class="resend-info">
+                Didn't receive the email? Check your spam folder or click the resend button above.
+            </p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { API_URL } from './js/config.js';
+
+        // Get email from URL parameter or localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email') || localStorage.getItem('pendingEmail');
+
+        if (email) {
+            document.getElementById('userEmail').textContent = email;
+            localStorage.setItem('pendingEmail', email);
+        } else {
+            document.getElementById('userEmail').textContent = 'your email address';
+        }
+
+        // Resend verification email
+        document.getElementById('resendBtn').addEventListener('click', async function() {
+            const btn = this;
+            const alertContainer = document.getElementById('alertContainer');
+            
+            if (!email) {
+                showAlert('error', 'Email address not found. Please register again.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+
+            try {
+                const response = await fetch(`${API_URL}/api/auth/resend-verification`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    showAlert('success', 'Verification email sent! Please check your inbox.');
+                    btn.textContent = 'Email Sent ✓';
+                    setTimeout(() => {
+                        btn.textContent = 'Resend Verification Email';
+                        btn.disabled = false;
+                    }, 5000);
+                } else {
+                    showAlert('error', data.error || 'Failed to send email. Please try again.');
+                    btn.textContent = 'Resend Verification Email';
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                console.error('Resend error:', error);
+                showAlert('error', 'An error occurred. Please try again.');
+                btn.textContent = 'Resend Verification Email';
+                btn.disabled = false;
+            }
+        });
+
+        function showAlert(type, message) {
+            const alertContainer = document.getElementById('alertContainer');
+            alertContainer.innerHTML = `
+                <div class="alert alert-${type}">
+                    ${message}
+                </div>
+            `;
+            setTimeout(() => {
+                alertContainer.innerHTML = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
+
