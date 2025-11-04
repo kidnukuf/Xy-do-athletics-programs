@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - DEBUG MODE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 { color: #1e3a8a; margin-bottom: 10px; text-align: center; }
+        .debug-badge {
+            background: #ff9800;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .form-group { margin-bottom: 15px; }
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .message {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+        .error { background: #ffebee; color: #c62828; border-left: 4px solid #c62828; }
+        .success { background: #e8f5e9; color: #2e7d32; border-left: 4px solid #2e7d32; }
+        .info { background: #e3f2fd; color: #1565c0; border-left: 4px solid #1565c0; }
+        .debug-log {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .debug-entry {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .debug-entry:last-child {
+            border-bottom: none;
+        }
+        .timestamp {
+            color: #666;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Registration Debug</h1>
+        <div class="debug-badge">DEBUG MODE - Shows all errors on screen</div>
+        
+        <div id="messages"></div>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Password * (min 6 chars)</label>
+                <input type="password" id="password" required minlength="6">
+            </div>
+            
+            <div class="form-group">
+                <label>Confirm Password *</label>
+                <input type="password" id="confirmPassword" required>
+            </div>
+            
+            <div class="form-group">
+                <label>School/Organization *</label>
+                <input type="text" id="school" required>
+            </div>
+            
+            <button type="submit" id="submitBtn">Create Account</button>
+        </form>
+        
+        <div class="debug-log" id="debugLog">
+            <strong>Debug Log:</strong>
+            <div id="logEntries"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://xy-do-backend-production-88c9.up.railway.app/api';
+        
+        function addMessage(text, type = 'info') {
+            const messagesDiv = document.getElementById('messages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${type}`;
+            msgDiv.textContent = text;
+            messagesDiv.appendChild(msgDiv);
+            
+            // Auto-scroll to message
+            msgDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function addDebugLog(text) {
+            const logEntries = document.getElementById('logEntries');
+            const entry = document.createElement('div');
+            entry.className = 'debug-entry';
+            
+            const timestamp = new Date().toLocaleTimeString();
+            entry.innerHTML = `<div class="timestamp">${timestamp}</div><div>${text}</div>`;
+            
+            logEntries.appendChild(entry);
+            
+            // Auto-scroll
+            entry.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Log that page loaded
+        addDebugLog('✅ Page loaded successfully');
+        addDebugLog('✅ JavaScript running');
+        addDebugLog(`📡 API URL: ${API_URL}`);
+        
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            addDebugLog('🔵 Form submitted');
+            
+            // Clear previous messages
+            document.getElementById('messages').innerHTML = '';
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Creating Account...';
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const school = document.getElementById('school').value;
+            
+            addDebugLog(`📝 Name: ${name}`);
+            addDebugLog(`📝 Email: ${email}`);
+            addDebugLog(`📝 School: ${school}`);
+            
+            // Validate
+            if (!name || !email || !password || !school) {
+                addMessage('❌ Please fill in all required fields', 'error');
+                addDebugLog('❌ Validation failed: Missing fields');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Create Account';
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                addMessage('❌ Passwords do not match', 'error');
+                addDebugLog('❌ Validation failed: Passwords do not match');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Create Account';
+                return;
+            }
+            
+            if (password.length < 6) {
+                addMessage('❌ Password must be at least 6 characters', 'error');
+                addDebugLog('❌ Validation failed: Password too short');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Create Account';
+                return;
+            }
+            
+            addDebugLog('✅ Client-side validation passed');
+            
+            const userData = {
+                name,
+                email,
+                password,
+                role: 'player',
+                school
+            };
+            
+            addDebugLog(`📤 Sending request to: ${API_URL}/auth/register`);
+            addDebugLog(`📦 Data: ${JSON.stringify(userData, null, 2)}`);
+            
+            try {
+                addDebugLog('⏳ Waiting for server response...');
+                
+                const response = await fetch(`${API_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+                
+                addDebugLog(`📨 Response Status: ${response.status} ${response.statusText}`);
+                
+                const data = await response.json();
+                addDebugLog(`📥 Response Data: ${JSON.stringify(data, null, 2)}`);
+                
+                if (data.success) {
+                    addMessage('✅ Registration successful!', 'success');
+                    addDebugLog('✅ SUCCESS: Account created');
+                    
+                    // Save token
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    addDebugLog('💾 Token saved to localStorage');
+                    
+                    addMessage('✅ Redirecting to dashboard in 2 seconds...', 'success');
+                    addDebugLog('🔄 Redirecting to dashboard...');
+                    
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 2000);
+                } else {
+                    addMessage(`❌ Registration failed: ${data.message || data.error || 'Unknown error'}`, 'error');
+                    addDebugLog(`❌ FAILED: ${data.message || data.error}`);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Create Account';
+                }
+            } catch (error) {
+                addMessage(`❌ Error: ${error.message}`, 'error');
+                addDebugLog(`❌ EXCEPTION: ${error.message}`);
+                addDebugLog(`❌ Stack: ${error.stack}`);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Create Account';
+            }
+        });
+        
+        addDebugLog('✅ Form event listener attached');
+        addMessage('👋 Ready to test registration! Fill out the form and click "Create Account"', 'info');
+    </script>
+</body>
+</html>
