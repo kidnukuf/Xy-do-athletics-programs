@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Registration</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+        input, button { display: block; width: 100%; margin: 10px 0; padding: 10px; }
+        button { background: #4CAF50; color: white; border: none; cursor: pointer; }
+        #result { margin-top: 20px; padding: 10px; background: #f0f0f0; white-space: pre-wrap; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e9; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <h1>XY-DO Registration Test</h1>
+    <p>This is a simple test to diagnose registration issues.</p>
+    
+    <form id="testForm">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password (min 6)" required minlength="6">
+        <input type="text" id="school" placeholder="School" required>
+        <button type="submit">Test Registration</button>
+    </form>
+    
+    <div id="result"></div>
+    
+    <script>
+        const API_URL = 'https://xy-do-backend-production-88c9.up.railway.app/api';
+        
+        document.getElementById('testForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = 'Sending request...';
+            resultDiv.className = '';
+            
+            const userData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                role: 'player',
+                school: document.getElementById('school').value
+            };
+            
+            console.log('Sending data:', userData);
+            
+            try {
+                const response = await fetch(`${API_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+                
+                const data = await response.json();
+                console.log('Response:', data);
+                
+                if (data.success) {
+                    resultDiv.className = 'success';
+                    resultDiv.textContent = 'SUCCESS!\n\n' + JSON.stringify(data, null, 2);
+                    
+                    // Save token
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    setTimeout(() => {
+                        alert('Registration successful! Check localStorage for token.');
+                    }, 1000);
+                } else {
+                    resultDiv.className = 'error';
+                    resultDiv.textContent = 'FAILED!\n\n' + JSON.stringify(data, null, 2);
+                }
+            } catch (error) {
+                resultDiv.className = 'error';
+                resultDiv.textContent = 'ERROR!\n\n' + error.message + '\n\nCheck browser console for details.';
+                console.error('Registration error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
