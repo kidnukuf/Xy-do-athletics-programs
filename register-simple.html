@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - XY-DO</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        button:hover:not(:disabled) {
+            background: #2563eb;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+        .message {
+            padding: 14px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+            display: block;
+        }
+        .success {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+            display: block;
+        }
+        .info {
+            background: #dbeafe;
+            color: #1e40af;
+            border-left: 4px solid #3b82f6;
+            display: block;
+        }
+        .debug {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .debug-entry {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #cbd5e1;
+        }
+        .debug-entry:last-child {
+            border-bottom: none;
+        }
+        .timestamp {
+            color: #64748b;
+            font-size: 11px;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+            font-size: 14px;
+        }
+        .login-link a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏀 XY-DO Register</h1>
+        <p class="subtitle">Create your account to get started</p>
+        
+        <div id="message" class="message"></div>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required autocomplete="name">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password * (min 6 characters)</label>
+                <input type="password" id="password" name="password" required minlength="6" autocomplete="new-password">
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password *</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6" autocomplete="new-password">
+            </div>
+            
+            <div class="form-group">
+                <label for="school">School/Organization *</label>
+                <input type="text" id="school" name="school" required autocomplete="organization">
+            </div>
+            
+            <button type="submit" id="submitBtn">Create Account</button>
+        </form>
+        
+        <div class="login-link">
+            Already have an account? <a href="login.html">Login</a>
+        </div>
+        
+        <div class="debug" id="debug">
+            <strong>Debug Log:</strong>
+            <div id="debugLog"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://xy-do-backend-production-88c9.up.railway.app/api';
+        
+        // Utility functions
+        function showMessage(text, type = 'info') {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = `message ${type}`;
+            msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function addDebugLog(text) {
+            const log = document.getElementById('debugLog');
+            const entry = document.createElement('div');
+            entry.className = 'debug-entry';
+            const timestamp = new Date().toLocaleTimeString();
+            entry.innerHTML = `<div class="timestamp">${timestamp}</div><div>${text}</div>`;
+            log.appendChild(entry);
+            entry.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        // Initialize
+        addDebugLog('✅ Page loaded');
+        addDebugLog(`📡 API: ${API_URL}`);
+        
+        // Form submission
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            addDebugLog('🔵 Form submitted');
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Creating Account...';
+            
+            // Get form data
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const school = document.getElementById('school').value.trim();
+            
+            addDebugLog(`📝 Name: ${name}`);
+            addDebugLog(`📝 Email: ${email}`);
+            addDebugLog(`📝 School: ${school}`);
+            
+            // Validate
+            if (!name || !email || !password || !school) {
+                showMessage('❌ Please fill in all required fields', 'error');
+                addDebugLog('❌ Validation failed: Missing fields');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Create Account';
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showMessage('❌ Passwords do not match', 'error');
+                addDebugLog('❌ Validation failed: Passwords mismatch');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Create Account';
+                return;
+            }
+            
+            if (password.length < 6) {
+                showMessage('❌ Password must be at least 6 characters', 'error');
+                addDebugLog('❌ Validation failed: Password too short');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Create Account';
+                return;
+            }
+            
+            addDebugLog('✅ Validation passed');
+            
+            // Prepare data
+            const userData = {
+                name,
+                email,
+                password,
+                role: 'player',
+                school
+            };
+            
+            addDebugLog(`📤 Sending to: ${API_URL}/auth/register`);
+            addDebugLog(`📦 Data: ${JSON.stringify(userData)}`);
+            
+            try {
+                // Make API call
+                const response = await fetch(`${API_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+                
+                addDebugLog(`📨 Response: ${response.status} ${response.statusText}`);
+                
+                const data = await response.json();
+                addDebugLog(`📥 Data: ${JSON.stringify(data)}`);
+                
+                if (response.ok && data.success) {
+                    // Success!
+                    showMessage('✅ Account created successfully!', 'success');
+                    addDebugLog('✅ SUCCESS - Account created');
+                    
+                    // Save token
+                    if (data.token) {
+                        localStorage.setItem('token', data.token);
+                        localStorage.setItem('user', JSON.stringify(data.user));
+                        addDebugLog('💾 Token saved to localStorage');
+                    }
+                    
+                    // Redirect to dashboard
+                    showMessage('✅ Redirecting to dashboard...', 'success');
+                    addDebugLog('🔄 Redirecting...');
+                    
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 2000);
+                } else {
+                    // Error from API
+                    const errorMsg = data.message || data.error || 'Registration failed';
+                    showMessage(`❌ ${errorMsg}`, 'error');
+                    addDebugLog(`❌ API Error: ${errorMsg}`);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Create Account';
+                }
+            } catch (error) {
+                // Network or other error
+                showMessage(`❌ Error: ${error.message}`, 'error');
+                addDebugLog(`❌ Exception: ${error.message}`);
+                console.error('Registration error:', error);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Create Account';
+            }
+        });
+    </script>
+</body>
+</html>
